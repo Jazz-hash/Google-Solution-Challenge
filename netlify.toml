@@ -1,0 +1,3 @@
+[build]
+  command = "chmod a+x ./flutter-netlify-build.sh && ./flutter-netlify-build.sh"
+  publish = "build/web"
