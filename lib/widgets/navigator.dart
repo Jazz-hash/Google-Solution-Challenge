@@ -5,14 +5,14 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class CustomNavigation extends StatefulWidget {
+class Dashboard extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _CustomNavigationState();
+    return _DashboardState();
   }
 }
 
-class _CustomNavigationState extends State<CustomNavigation> {
+class _DashboardState extends State<Dashboard> {
   final List<Widget> _children = [
     Profile(),
     Home(),
@@ -26,8 +26,8 @@ class _CustomNavigationState extends State<CustomNavigation> {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.black87,
-      statusBarBrightness: Brightness.light,
-      statusBarIconBrightness: Brightness.light,
+      statusBarBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.dark,
     ));
 
     return Scaffold(
