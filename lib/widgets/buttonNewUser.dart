@@ -31,23 +31,25 @@ class _ButtonNewUserState extends State<ButtonNewUser> {
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => Dashboard()));
           },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'OK',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              Icon(
-                Icons.arrow_forward,
-                color: Colors.black,
-              ),
-            ],
-          ),
+          child: Align(
+              alignment: Alignment.center,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'OK',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Icon(
+                    Icons.arrow_forward,
+                    color: Colors.black,
+                  ),
+                ],
+              )),
         ),
       ),
     );
