@@ -35,23 +35,25 @@ class _ButtonLoginState extends State<ButtonLogin> {
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => Dashboard()));
           },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'GO',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              Icon(
-                Icons.arrow_forward,
-                color: Colors.black,
-              ),
-            ],
-          ),
+          child: Align(
+              alignment: Alignment.center,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'GO',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Icon(
+                    Icons.arrow_forward,
+                    color: Colors.black,
+                  ),
+                ],
+              )),
         ),
       ),
     );
