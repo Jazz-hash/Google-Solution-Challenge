@@ -8,7 +8,7 @@ const String FontNameDefault = 'Montserrat';
 
 const Color TextColorDark = Colors.black;
 const Color TextColorLight = Colors.white;
-const Color TextColorAccent = Colors.red;
+const Color TextColorAccent = Colors.white;
 const Color TextColorFaint = Color.fromRGBO(125, 125, 125, 1.0);
 
 const DefaultPaddingHorizontal = 12.0;

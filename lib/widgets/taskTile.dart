@@ -31,7 +31,7 @@ class TaskTile extends StatelessWidget {
             ),
             Text(
               date.toUpperCase(),
-              style: Theme.of(context).textTheme.subtitle,
+              style: Theme.of(context).textTheme.subtitle.copyWith(color: textColor),
             ),
             Text(
               description.toUpperCase(),

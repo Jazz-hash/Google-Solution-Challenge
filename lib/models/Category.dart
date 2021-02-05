@@ -26,6 +26,122 @@ class Category {
         id: 1,
         title: "Category 5",
       ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
+      Category(
+        id: 1,
+        title: "Category 5",
+      ),
     ];
   }
 }

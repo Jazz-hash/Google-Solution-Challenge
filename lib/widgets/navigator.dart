@@ -15,8 +15,8 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   final List<Widget> _children = [
-    Profile(),
     Home(),
+    Profile(),
     Notifications(),
     NewsFeed()
   ];
@@ -49,12 +49,12 @@ class _DashboardState extends State<Dashboard> {
           height: 50,
           animationCurve: Curves.bounceInOut,
           animationDuration: Duration(milliseconds: 200),
-          index: 1,
+          index: 0,
           items: [
-            Icon(Icons.verified_user, size: 20, color: Colors.grey),
             Icon(Icons.home, size: 20, color: Colors.grey),
+            Icon(Icons.verified_user, size: 20, color: Colors.grey),
             Icon(Icons.add, size: 20, color: Colors.grey),
-            Icon(Icons.feedback, size: 20, color: Colors.grey),
+            Icon(Icons.favorite, size: 20, color: Colors.grey),
           ],
           onTap: (index) {
             setState(() {
