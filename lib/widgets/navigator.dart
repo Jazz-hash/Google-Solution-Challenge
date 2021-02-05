@@ -1,4 +1,5 @@
 import 'package:bizzhome/screens/home.dart';
+import 'package:bizzhome/screens/newsfeed.dart';
 import 'package:bizzhome/screens/notifications.dart';
 import 'package:bizzhome/screens/profile.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -17,6 +18,7 @@ class _DashboardState extends State<Dashboard> {
     Profile(),
     Home(),
     Notifications(),
+    NewsFeed()
   ];
 
   int _currentIndex = 0;
@@ -52,6 +54,7 @@ class _DashboardState extends State<Dashboard> {
             Icon(Icons.verified_user, size: 20, color: Colors.grey),
             Icon(Icons.home, size: 20, color: Colors.grey),
             Icon(Icons.add, size: 20, color: Colors.grey),
+            Icon(Icons.feedback, size: 20, color: Colors.grey),
           ],
           onTap: (index) {
             setState(() {
