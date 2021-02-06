@@ -29,7 +29,7 @@ class _RegisterState extends State<Register> {
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    SingUp(),
+                    SignUp(),
                     TextNew(),
                   ],
                 ),

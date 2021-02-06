@@ -8,14 +8,18 @@ class NewsFeed extends StatelessWidget {
   Widget build(BuildContext context) {
     final tasks = Task.fetchAll();
 
-    return ListView.builder(
-      itemCount: tasks.length,
-      itemBuilder: (context, index) => _itemBuilder(context, tasks[index]),
+    return Container(
+      margin: EdgeInsets.all(20),
+      child: ListView.builder(
+        itemCount: tasks.length,
+        itemBuilder: (context, index) => _itemBuilder(context, tasks[index]),
+      ),
     );
   }
 
   Widget _itemBuilder(BuildContext context, task) {
     return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
       child: GestureDetector(
         onTap: () {},
         child: Container(

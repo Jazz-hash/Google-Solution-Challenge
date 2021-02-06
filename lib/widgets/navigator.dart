@@ -2,6 +2,7 @@ import 'package:bizzhome/screens/home.dart';
 import 'package:bizzhome/screens/newsfeed.dart';
 import 'package:bizzhome/screens/notifications.dart';
 import 'package:bizzhome/screens/profile.dart';
+import 'package:bizzhome/screens/tasksheet.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,7 +19,8 @@ class _DashboardState extends State<Dashboard> {
     Home(),
     Profile(),
     Notifications(),
-    NewsFeed()
+    NewsFeed(),
+    TaskSheet(),
   ];
 
   int _currentIndex = 0;
@@ -55,6 +57,7 @@ class _DashboardState extends State<Dashboard> {
             Icon(Icons.verified_user, size: 20, color: Colors.grey),
             Icon(Icons.add, size: 20, color: Colors.grey),
             Icon(Icons.favorite, size: 20, color: Colors.grey),
+            Icon(Icons.list, size: 20, color: Colors.grey),
           ],
           onTap: (index) {
             setState(() {
