@@ -178,7 +178,7 @@ class _DeliveryProcesses extends StatelessWidget {
             indicatorBuilder: (_, index) {
               if (processes[index].isCompleted) {
                 return DotIndicator(
-                  color: Color(0xff66c97f),
+                  color: Color(0xFFE5634D),
                   child: Icon(
                     Icons.check,
                     color: Colors.white,
@@ -192,7 +192,7 @@ class _DeliveryProcesses extends StatelessWidget {
               }
             },
             connectorBuilder: (_, index, ___) => SolidLineConnector(
-              color: processes[index].isCompleted ? Color(0xff66c97f) : null,
+              color: processes[index].isCompleted ? Color(0xFFE5634D) : null,
             ),
           ),
         ),
@@ -223,7 +223,7 @@ class _OnTimeBar extends StatelessWidget {
             },
             elevation: 0,
             shape: StadiumBorder(),
-            color: Color(0xff66c97f),
+            color: Color(0xFFE5634D),
             textColor: Colors.white,
             child: Text('On-time'),
           ),
