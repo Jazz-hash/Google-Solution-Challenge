@@ -13,7 +13,6 @@ class TaskSheet extends StatelessWidget {
           final data = _data(index + 1);
           return Center(
             child: Container(
-              width: 360.0,
               child: Card(
                 margin: EdgeInsets.all(20.0),
                 child: Column(

@@ -24,15 +24,15 @@ class _DashboardState extends State<Dashboard> {
   ];
 
   int _currentIndex = 0;
-  GlobalKey _bottomNavigationKey = GlobalKey();
+  // GlobalKey _bottomNavigationKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.black87,
-      statusBarBrightness: Brightness.dark,
-      statusBarIconBrightness: Brightness.dark,
-    ));
+    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    //   statusBarColor: Colors.black87,
+    //   statusBarBrightness: Brightness.dark,
+    //   statusBarIconBrightness: Brightness.dark,
+    // ));
 
     return Scaffold(
       appBar: AppBar(

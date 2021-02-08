@@ -8,8 +8,6 @@ const LoginRoute = "/";
 const DashboardRoute = "/dashboard";
 const RegisterRoute = "/register";
 
-void main() => runApp(App());
-
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,7 @@ class App extends StatelessWidget {
 
   RouteFactory _routes() {
     return (settings) {
-      // final Map<String, dynamic> arguments = settings.arguments;
+      final Map<String, dynamic> arguments = settings.arguments;
       Widget screen;
       switch (settings.name) {
         case LoginRoute:
@@ -45,6 +43,9 @@ class App extends StatelessWidget {
 
   ThemeData _theme() {
     return ThemeData(
+        pageTransitionsTheme: PageTransitionsTheme(builders: {
+          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+        }),
         appBarTheme: AppBarTheme(
           color: Colors.white,
           textTheme: TextTheme(
