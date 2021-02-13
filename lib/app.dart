@@ -1,3 +1,4 @@
+import 'package:bizzhome/screens/items.dart';
 import 'package:bizzhome/screens/login.dart';
 import 'package:bizzhome/screens/register.dart';
 import 'package:bizzhome/styles.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 const LoginRoute = "/";
 const DashboardRoute = "/dashboard";
 const RegisterRoute = "/register";
+const ItemsRoute = "/items";
 
 class App extends StatelessWidget {
   @override
@@ -30,6 +32,9 @@ class App extends StatelessWidget {
           break;
         case RegisterRoute:
           screen = Register();
+          break;
+        case ItemsRoute:
+          screen = ItemsPage();
           break;
         // case RegisterRoute:
         //   screen = Register(arguments["id"]);
