@@ -17,7 +17,7 @@ class Profile extends StatelessWidget {
       child: ListView(
         children: [
           Container(
-            margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -27,7 +27,7 @@ class Profile extends StatelessWidget {
                       user[0].avatar,
                     ),
                   ),
-                  maxRadius: 45,
+                  maxRadius: 50,
                 ),
                 Text(""),
                 Text(
@@ -39,10 +39,10 @@ class Profile extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(""),
                 Text(
                   "Monthly Progress",
                   style: TextStyle(
+                    height: 2,
                     fontSize: 17,
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
@@ -52,9 +52,9 @@ class Profile extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.fromLTRB(15, 10, 15, 0),
+            margin: EdgeInsets.fromLTRB(15, 10, 15, 10),
             color: Color(0xFF2e282a),
-            height: 200,
+            height: 100,
             width: MediaQuery.of(context).size.width * 0.9,
             child: BezierChart(
               bezierChartScale: BezierChartScale.CUSTOM,
@@ -77,7 +77,7 @@ class Profile extends StatelessWidget {
                 verticalIndicatorStrokeWidth: 3.0,
                 verticalIndicatorColor: Colors.white,
                 showVerticalIndicator: true,
-                backgroundColor: Color(0xFFE5634D),
+                backgroundColor: Color(0xFF000000),
                 snap: false,
               ),
             ),
@@ -148,7 +148,7 @@ class Profile extends StatelessWidget {
 
   Widget _buildBasicInfoWidget() {
     return Container(
-        color: Colors.white,
+        color: Color(0xFFE5634D),
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -156,7 +156,7 @@ class Profile extends StatelessWidget {
             Text(
               "Basic Information",
               style: TextStyle(
-                  color: Color(0xFF2e282a),
+                  color: Colors.white,
                   fontFamily: 'OpenSans',
                   fontSize: 20.0,
                   fontWeight: FontWeight.w800),
@@ -180,14 +180,14 @@ class Profile extends StatelessWidget {
 
   Widget _buildEducationWidget() {
     return Container(
-        color: Colors.white,
+        color: Color(0xFFE5634D),
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text("Education",
                 style: TextStyle(
-                  color: Color(0xFF2e282a),
+                  color: Colors.white,
                   fontFamily: 'OpenSans',
                   fontSize: 20.0,
                   fontWeight: FontWeight.w800,
@@ -211,14 +211,14 @@ class Profile extends StatelessWidget {
 
   Widget _buildSkillsWidget() {
     return Container(
-        color: Colors.white,
+        color: Color(0xFFE5634D),
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text("Skills",
                 style: TextStyle(
-                    color: Color(0xFF2e282a),
+                    color: Colors.white,
                     fontFamily: 'OpenSans',
                     fontSize: 20.0,
                     fontWeight: FontWeight.w800)),
@@ -289,8 +289,8 @@ class Profile extends StatelessWidget {
                     Icon(Icons.arrow_upward),
                   ],
                 ),
-                textColor: Colors.white,
-                color: Color(0xFFE5634D),
+                textColor: Colors.black,
+                color: Colors.transparent,
                 minWidth: 30,
                 splashColor: Colors.white.withOpacity(0.5),
               ),
@@ -338,8 +338,8 @@ class Profile extends StatelessWidget {
                     Icon(Icons.arrow_upward),
                   ],
                 ),
-                textColor: Colors.white,
-                color: Color(0xFFE5634D),
+                textColor: Colors.black,
+                color: Colors.transparent,
                 minWidth: 30,
                 splashColor: Colors.white.withOpacity(0.5),
               ),
@@ -390,8 +390,8 @@ class Profile extends StatelessWidget {
                     Icon(Icons.arrow_upward),
                   ],
                 ),
-                textColor: Colors.white,
-                color: Color(0xFFE5634D),
+                textColor: Colors.black,
+                color: Colors.transparent,
                 minWidth: 30,
                 splashColor: Colors.white.withOpacity(0.5),
               ),

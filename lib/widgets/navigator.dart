@@ -1,5 +1,4 @@
 import 'package:bizzhome/screens/home.dart';
-import 'package:bizzhome/screens/home2.dart';
 import 'package:bizzhome/screens/newsfeed.dart';
 import 'package:bizzhome/screens/notifications.dart';
 import 'package:bizzhome/screens/profile.dart';
@@ -18,7 +17,6 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   final List<Widget> _children = [
     Home(),
-    MainPage(),
     Profile(),
     Notifications(),
     NewsFeed(),
@@ -55,7 +53,6 @@ class _DashboardState extends State<Dashboard> {
           animationDuration: Duration(milliseconds: 200),
           index: 0,
           items: [
-            Icon(Icons.home, size: 20, color: Colors.grey),
             Icon(Icons.home, size: 20, color: Colors.grey),
             Icon(Icons.verified_user, size: 20, color: Colors.grey),
             Icon(Icons.add, size: 20, color: Colors.grey),

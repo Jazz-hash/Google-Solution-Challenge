@@ -9,69 +9,68 @@ class ItemsPage extends StatefulWidget {
 class _ItemsPageState extends State<ItemsPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: Colors.black,
-          leading: IconButton(
-            color: Colors.black,
-            onPressed: () => Navigator.of(context).pop(),
-            icon: Icon(Icons.arrow_back, color: Colors.black),
-          ),
-          title: Text('Items (3)',
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
-          // actions: <Widget>
-          // [
-          //   Container
-          //   (
-          //     margin: EdgeInsets.only(right: 8.0),
-          //     child: Row
-          //     (
-          //       mainAxisAlignment: MainAxisAlignment.center,
-          //       crossAxisAlignment: CrossAxisAlignment.center,
-          //       children: <Widget>
-          //       [
-          //         Text('beclothed.com', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 14.0)),
-          //         Icon(Icons.arrow_drop_down, color: Colors.black54)
-          //       ],
-          //     ),
-          //   )
-          // ],
-        ),
-        body: ListView(
-          scrollDirection: Axis.vertical,
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
-          children: <Widget>[
-            Container(
-                margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: 54.0),
-                child: Material(
-                  elevation: 8.0,
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(32.0),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Padding(
-                      padding: EdgeInsets.all(12.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Icon(Icons.add, color: Colors.white),
-                          Padding(padding: EdgeInsets.only(right: 16.0)),
-                          Text('ADD A ITEM',
-                              style: TextStyle(color: Colors.white))
-                        ],
-                      ),
-                    ),
+    return Container(
+        // appBar: AppBar(
+        //   elevation: 0.0,
+        //   backgroundColor: Colors.black,
+        //   leading: IconButton(
+        //     color: Colors.black,
+        //     onPressed: () => Navigator.of(context).pop(),
+        //     icon: Icon(Icons.arrow_back, color: Colors.black),
+        //   ),
+        //   title: Text('Items (3)',
+        //       style:
+        //           TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
+        // actions: <Widget>
+        // [
+        //   Container
+        //   (
+        //     margin: EdgeInsets.only(right: 8.0),
+        //     child: Row
+        //     (
+        //       mainAxisAlignment: MainAxisAlignment.center,
+        //       crossAxisAlignment: CrossAxisAlignment.center,
+        //       children: <Widget>
+        //       [
+        //         Text('beclothed.com', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 14.0)),
+        //         Icon(Icons.arrow_drop_down, color: Colors.black54)
+        //       ],
+        //     ),
+        //   )
+        // ],
+        // ),
+        child: ListView(
+      scrollDirection: Axis.vertical,
+      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      children: <Widget>[
+        Container(
+            margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: 54.0),
+            child: Material(
+              elevation: 8.0,
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(32.0),
+              child: InkWell(
+                onTap: () {},
+                child: Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(Icons.add, color: Colors.white),
+                      Padding(padding: EdgeInsets.only(right: 16.0)),
+                      Text('ADD A ITEM', style: TextStyle(color: Colors.white))
+                    ],
                   ),
-                )),
-            ShopItem(),
-            BadShopItem(),
-            NewShopItem()
-          ],
-        ));
+                ),
+              ),
+            )),
+        ShopItem(),
+        BadShopItem(),
+        NewShopItem()
+      ],
+    ));
   }
 }
 
@@ -97,76 +96,86 @@ class ShopItem extends StatelessWidget {
                         elevation: 14.0,
                         borderRadius: BorderRadius.circular(12.0),
                         shadowColor: Color(0x802196F3),
-                        color: Colors.white,
-                        child: InkWell(
-                          onTap: () => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (_) => ItemReviewsPage())),
-                          child: Padding(
-                            padding: EdgeInsets.all(24.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                /// Title and rating
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text('Nike Jordan III',
-                                        style: TextStyle(
-                                            color: Colors.blueAccent)),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        Text('4.6',
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 34.0)),
-                                        Icon(Icons.star,
-                                            color: Colors.black, size: 24.0),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-
-                                /// Infos
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text('Bought', style: TextStyle()),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 4.0),
-                                      child: Text('1,361',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w700)),
-                                    ),
-                                    Text('times for a profit of',
-                                        style: TextStyle()),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 4.0),
-                                      child: Material(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        color: Colors.green,
-                                        child: Padding(
-                                          padding: EdgeInsets.all(4.0),
-                                          child: Text('\$ 13K',
+                        color: Colors.transparent,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(colors: [
+                            Color(0xFF84fab0),
+                            Color(0xFF8fd3f4)
+                          ])),
+                          child: InkWell(
+                            onTap: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (_) => ItemReviewsPage())),
+                            child: Padding(
+                              padding: EdgeInsets.all(24.0),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  /// Title and rating
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text('Nike Jordan III',
+                                          style:
+                                              TextStyle(color: Colors.white)),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          Text('4.6',
                                               style: TextStyle(
-                                                  color: Colors.white)),
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 34.0)),
+                                          Icon(Icons.star,
+                                              color: Colors.black, size: 24.0),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+
+                                  /// Infos
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text('Bought', style: TextStyle()),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 4.0),
+                                        child: Text('1,361',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w700)),
+                                      ),
+                                      Text('times for a profit of',
+                                          style: TextStyle()),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 4.0),
+                                        child: Material(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          color: Colors.green,
+                                          child: Padding(
+                                            padding: EdgeInsets.all(4.0),
+                                            child: Text('\$ 13K',
+                                                style: TextStyle(
+                                                    color: Colors.white)),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -205,25 +214,18 @@ class ShopItem extends StatelessWidget {
                 bottomRight: Radius.circular(20.0),
               ),
               child: Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: [Color(0xFF84fab0), Color(0xFF8fd3f4)],
-                        end: Alignment.topLeft,
-                        begin: Alignment.bottomRight)),
-                child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 4.0),
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.purple,
-                      child: Text('AI'),
-                    ),
-                    title: Text('Ivascu Adrian ★★★★★', style: TextStyle()),
-                    subtitle: Text(
-                        'The shoes were shipped one day before the shipping date, but this wasn\'t at all a problem :). The shoes are very comfortable and good looking',
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle()),
+                margin: EdgeInsets.symmetric(vertical: 4.0),
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.purple,
+                    child: Text('AI'),
                   ),
+                  title: Text('Ivascu Adrian ★★★★★', style: TextStyle()),
+                  subtitle: Text(
+                      'The shoes were shipped one day before the shipping date, but this wasn\'t at all a problem :). The shoes are very comfortable and good looking',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle()),
                 ),
               ),
             ),

@@ -1,45 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:timelines/timelines.dart';
+import 'package:bizzhome/models/Order.dart';
 
 const kTileHeight = 50.0;
 
 class TaskSheet extends StatelessWidget {
+  final tasks = OrderInfo.fetchAll();
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20),
       child: ListView.builder(
-        itemBuilder: (context, index) {
-          final data = _data(index + 1);
-          return Center(
-            child: Container(
-              child: Card(
-                margin: EdgeInsets.all(20.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: _OrderTitle(
-                        orderInfo: data,
-                      ),
-                    ),
-                    Divider(height: 1.0),
-                    _DeliveryProcesses(processes: data.deliveryProcesses),
-                    Divider(height: 1.0),
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: _OnTimeBar(driver: data.driverInfo),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-        },
+        itemCount: tasks.length,
+        itemBuilder: (context, index) => _itemBuilder(context, tasks[index]),
       ),
     );
   }
+}
+
+Widget _itemBuilder(BuildContext context, task) {
+  return Center(
+    child: Container(
+      child: Card(
+        color: Colors.black,
+        margin: EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: _OrderTitle(
+                orderInfo: task,
+              ),
+            ),
+            Divider(height: 1.0),
+            _DeliveryProcesses(processes: task.deliveryProcesses),
+            Divider(height: 1.0),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: _OnTimeBar(client: task.clientInfo),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
 }
 
 class _OrderTitle extends StatelessWidget {
@@ -49,7 +55,7 @@ class _OrderTitle extends StatelessWidget {
   })  : assert(orderInfo != null),
         super(key: key);
 
-  final _OrderInfo orderInfo;
+  final OrderInfo orderInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +65,7 @@ class _OrderTitle extends StatelessWidget {
           'Delivery #${orderInfo.id}',
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
         Spacer(),
@@ -78,7 +85,7 @@ class _InnerTimeline extends StatelessWidget {
     @required this.messages,
   });
 
-  final List<_DeliveryMessage> messages;
+  final List<DeliveryMessage> messages;
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +136,7 @@ class _DeliveryProcesses extends StatelessWidget {
       : assert(processes != null),
         super(key: key);
 
-  final List<_DeliveryProcess> processes;
+  final List<DeliveryProcess> processes;
   @override
   Widget build(BuildContext context) {
     return DefaultTextStyle(
@@ -165,9 +172,9 @@ class _DeliveryProcesses extends StatelessWidget {
                   children: [
                     Text(
                       processes[index].name,
-                      style: DefaultTextStyle.of(context).style.copyWith(
-                            fontSize: 18.0,
-                          ),
+                      style: DefaultTextStyle.of(context)
+                          .style
+                          .copyWith(fontSize: 18.0, color: Colors.white),
                     ),
                     _InnerTimeline(messages: processes[index].messages),
                   ],
@@ -201,11 +208,11 @@ class _DeliveryProcesses extends StatelessWidget {
 }
 
 class _OnTimeBar extends StatelessWidget {
-  const _OnTimeBar({Key key, @required this.driver})
-      : assert(driver != null),
+  const _OnTimeBar({Key key, @required this.client})
+      : assert(client != null),
         super(key: key);
 
-  final _DriverInfo driver;
+  final ClientInfo client;
 
   @override
   Widget build(BuildContext context) {
@@ -228,10 +235,11 @@ class _OnTimeBar extends StatelessWidget {
           ),
         ),
         Spacer(),
-        Text(
-          'Driver\n${driver.name}',
-          textAlign: TextAlign.center,
-        ),
+        Text('Client\n${client.name}',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+            )),
         SizedBox(width: 12.0),
         Container(
           width: 40.0,
@@ -240,92 +248,13 @@ class _OnTimeBar extends StatelessWidget {
             shape: BoxShape.circle,
             image: DecorationImage(
               fit: BoxFit.fitWidth,
-              image: NetworkImage(
-                driver.thumbnailUrl,
+              image: AssetImage(
+                client.thumbnailUrl,
               ),
             ),
           ),
         ),
       ],
     );
-  }
-}
-
-_OrderInfo _data(int id) => _OrderInfo(
-      id: id,
-      date: DateTime.now(),
-      driverInfo: _DriverInfo(
-        name: 'Philipe',
-        thumbnailUrl:
-            'https://i.pinimg.com/originals/08/45/81/084581e3155d339376bf1d0e17979dc6.jpg',
-      ),
-      deliveryProcesses: [
-        _DeliveryProcess(
-          'Package Process',
-          messages: [
-            _DeliveryMessage('8:30am', 'Package received by driver'),
-            _DeliveryMessage('11:30am', 'Reached halfway mark'),
-          ],
-        ),
-        _DeliveryProcess(
-          'In Transit',
-          messages: [
-            _DeliveryMessage('13:00pm', 'Driver arrived at destination'),
-            _DeliveryMessage('11:35am', 'Package delivered by m.vassiliades'),
-          ],
-        ),
-        _DeliveryProcess.complete(),
-      ],
-    );
-
-class _OrderInfo {
-  const _OrderInfo({
-    @required this.id,
-    @required this.date,
-    @required this.driverInfo,
-    @required this.deliveryProcesses,
-  });
-
-  final int id;
-  final DateTime date;
-  final _DriverInfo driverInfo;
-  final List<_DeliveryProcess> deliveryProcesses;
-}
-
-class _DriverInfo {
-  const _DriverInfo({
-    @required this.name,
-    this.thumbnailUrl,
-  });
-
-  final String name;
-  final String thumbnailUrl;
-}
-
-class _DeliveryProcess {
-  const _DeliveryProcess(
-    this.name, {
-    this.messages = const [],
-  });
-
-  const _DeliveryProcess.complete()
-      : this.name = 'Done',
-        this.messages = const [];
-
-  final String name;
-  final List<_DeliveryMessage> messages;
-
-  bool get isCompleted => name == 'Done';
-}
-
-class _DeliveryMessage {
-  const _DeliveryMessage(this.createdAt, this.message);
-
-  final String createdAt; // final DateTime createdAt;
-  final String message;
-
-  @override
-  String toString() {
-    return '$createdAt $message';
   }
 }

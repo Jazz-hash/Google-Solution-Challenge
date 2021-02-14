@@ -21,7 +21,7 @@ class _RegisterState extends State<Register> {
           gradient: LinearGradient(
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
-              colors: [Colors.blueGrey, Colors.black]),
+              colors: [Color(0xFF434343), Color(0xFF000000)]),
         ),
         child: ListView(
           children: <Widget>[
