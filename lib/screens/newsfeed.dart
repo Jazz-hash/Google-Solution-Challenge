@@ -1,18 +1,66 @@
+import 'package:bizzhome/app.dart';
 import 'package:bizzhome/widgets/imageBanner.dart';
 import 'package:bizzhome/widgets/tileOverlay.dart';
 import 'package:flutter/material.dart';
 import 'package:bizzhome/models/Task.dart';
 
 class NewsFeed extends StatelessWidget {
+  _onTaskTap(BuildContext context, int taskID) {
+    Navigator.pushNamed(context, TaskDetailRoute, arguments: {"id": taskID});
+  }
+
   @override
   Widget build(BuildContext context) {
     final tasks = Task.fetchAll();
 
     return Container(
-      margin: EdgeInsets.all(20),
-      child: ListView.builder(
-        itemCount: tasks.length,
-        itemBuilder: (context, index) => _itemBuilder(context, tasks[index]),
+      child: Column(
+        children: [
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Chip(
+                  backgroundColor: Color(0xFFE5634D),
+                  avatar: CircleAvatar(
+                    backgroundColor: Colors.transparent,
+                    child: Icon(Icons.construction, color: Colors.white),
+                  ),
+                  label: Text('In-Progress',
+                      style: TextStyle(color: Colors.white)),
+                ),
+                Chip(
+                  backgroundColor: Colors.black87,
+                  avatar: CircleAvatar(
+                    backgroundColor: Colors.transparent,
+                    child: Icon(Icons.check, color: Colors.white),
+                  ),
+                  label:
+                      Text('Completed', style: TextStyle(color: Colors.white)),
+                ),
+              ],
+            ),
+            height: 45,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black87.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: Offset(0, 3), // changes position of shadow
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: tasks.length,
+              itemBuilder: (context, index) =>
+                  _itemBuilder(context, tasks[index]),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -21,13 +69,19 @@ class NewsFeed extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () => _onTaskTap(context, task.id),
+        key: Key('task_list_item_${task.id}'),
         child: Container(
           height: 245.0,
           child: Stack(
             children: [
-              ImageBanner(assetPath: "assets/images/background.jpg"),
-              TileOverlay(task.title, task.date, task.description),
+              ImageBanner(assetPath: task.imagePath),
+              TileOverlay(
+                task.title,
+                task.assignedDate,
+                task.status,
+                task.description,
+              ),
             ],
           ),
         ),
