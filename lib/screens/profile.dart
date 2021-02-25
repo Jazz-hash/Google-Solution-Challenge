@@ -20,6 +20,7 @@ class Profile extends StatelessWidget {
             margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CircleAvatar(
                   child: ClipOval(
@@ -30,13 +31,15 @@ class Profile extends StatelessWidget {
                   maxRadius: 50,
                 ),
                 Text(""),
-                Text(
-                  user[0].fullname,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+                Center(
+                  child: Text(
+                    user[0].fullname,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 Text(
