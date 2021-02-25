@@ -62,7 +62,7 @@ class _OrderTitle extends StatelessWidget {
     return Row(
       children: [
         Text(
-          'Delivery #${orderInfo.id}',
+          'Delivery #${orderInfo.id} for ${orderInfo.task}',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.white,

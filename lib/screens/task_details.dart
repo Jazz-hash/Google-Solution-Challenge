@@ -38,6 +38,15 @@ class TaskDetail extends StatelessWidget {
               child: TaskTile(task.title, task.assignedDate, task.status,
                   task.description, true),
             ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
+              child: Text(
+                task.description,
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
           ],
           // ..addAll(textSections(location))),
         ),

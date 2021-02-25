@@ -1,9 +1,13 @@
+import 'package:bizzhome/models/Task.dart';
+
 class OrderInfo {
   final int id;
   final DateTime date;
   final ClientInfo clientInfo;
   final String description;
   final List<DeliveryProcess> deliveryProcesses;
+  // final Task task;
+  final String task;
 
   OrderInfo({
     this.id,
@@ -11,12 +15,14 @@ class OrderInfo {
     this.clientInfo,
     this.description,
     this.deliveryProcesses,
+    this.task,
   });
 
   static List<OrderInfo> fetchAll() {
     return [
       OrderInfo(
         id: 1,
+        task: "Task 2",
         date: DateTime.now(),
         clientInfo: ClientInfo(
           name: 'TestClient',

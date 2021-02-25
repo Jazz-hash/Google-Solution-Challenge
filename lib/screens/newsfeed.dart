@@ -9,6 +9,13 @@ class NewsFeed extends StatelessWidget {
     Navigator.pushNamed(context, TaskDetailRoute, arguments: {"id": taskID});
   }
 
+  _onTaskTypeTap(BuildContext context, String type) {
+    final tasks = Task.fetchInProgress(type);
+    for (var i = 0; i < tasks.length; i++) {
+      debugPrint(tasks[i].title);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final tasks = Task.fetchAll();
@@ -20,23 +27,31 @@ class NewsFeed extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Chip(
-                  backgroundColor: Color(0xFFE5634D),
-                  avatar: CircleAvatar(
-                    backgroundColor: Colors.transparent,
-                    child: Icon(Icons.construction, color: Colors.white),
+                GestureDetector(
+                  onTap: () => _onTaskTypeTap(context, "In-Progress"),
+                  key: Key('in_progress'),
+                  child: Chip(
+                    backgroundColor: Color(0xFFE5634D),
+                    avatar: CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      child: Icon(Icons.construction, color: Colors.white),
+                    ),
+                    label: Text('In-Progress',
+                        style: TextStyle(color: Colors.white)),
                   ),
-                  label: Text('In-Progress',
-                      style: TextStyle(color: Colors.white)),
                 ),
-                Chip(
-                  backgroundColor: Colors.black87,
-                  avatar: CircleAvatar(
-                    backgroundColor: Colors.transparent,
-                    child: Icon(Icons.check, color: Colors.white),
+                GestureDetector(
+                  onTap: () => _onTaskTypeTap(context, "Completed"),
+                  key: Key('completed'),
+                  child: Chip(
+                    backgroundColor: Colors.black87,
+                    avatar: CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      child: Icon(Icons.check, color: Colors.white),
+                    ),
+                    label: Text('Completed',
+                        style: TextStyle(color: Colors.white)),
                   ),
-                  label:
-                      Text('Completed', style: TextStyle(color: Colors.white)),
                 ),
               ],
             ),

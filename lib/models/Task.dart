@@ -30,7 +30,8 @@ class Task {
       Task(
         id: 1,
         title: "Task 1",
-        description: "Description",
+        description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
         status: "In-Progress",
         client: Client(
           name: "Batman",
@@ -43,9 +44,10 @@ class Task {
         imagePath: "assets/images/background.jpg",
       ),
       Task(
-        id: 1,
+        id: 2,
         title: "Task 2",
-        description: "Description",
+        description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
         status: "Completed",
         client: Client(
           name: "Batman",
@@ -69,5 +71,16 @@ class Task {
       }
     }
     return null;
+  }
+
+  static List<Task> fetchInProgress(String type) {
+    List<Task> tasks = Task.fetchAll();
+    List<Task> inProgressTask = [];
+    for (var i = 0; i < tasks.length; i++) {
+      if (tasks[i].status == type) {
+        inProgressTask.add(tasks[i]);
+      }
+    }
+    return inProgressTask;
   }
 }
