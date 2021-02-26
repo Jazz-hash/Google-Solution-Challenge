@@ -28,7 +28,7 @@ class _FirstTimeState extends State<FirstTime> {
               padding: EdgeInsets.all(0),
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Register()));
+                    MaterialPageRoute(builder: (context) => RegisterPage()));
               },
               child: Text(
                 'Sign up',

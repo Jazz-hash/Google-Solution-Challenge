@@ -6,7 +6,7 @@ import 'package:bizzhome/widgets/first.dart';
 import 'package:bizzhome/widgets/textLogin.dart';
 import 'package:bizzhome/widgets/verticalText.dart';
 
-class Login extends StatelessWidget {
+class LoginPage extends StatelessWidget {
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
 
@@ -16,7 +16,7 @@ class Login extends StatelessWidget {
     _scaffoldKey.currentState.showSnackBar(
       new SnackBar(
         backgroundColor: Colors.red,
-        content: new Text(value),
+        content: Text(value, style: TextStyle(color: Colors.white)),
       ),
     );
   }

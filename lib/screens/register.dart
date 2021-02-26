@@ -7,12 +7,12 @@ import 'package:bizzhome/widgets/signup.dart';
 import 'package:bizzhome/widgets/textNew.dart';
 import 'package:bizzhome/widgets/userOld.dart';
 
-class Register extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   @override
-  _RegisterState createState() => _RegisterState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _RegisterState extends State<Register> {
+class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

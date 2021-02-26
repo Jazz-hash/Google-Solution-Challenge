@@ -4,16 +4,23 @@ import 'package:bizzhome/models/Order.dart';
 
 const kTileHeight = 50.0;
 
-class TaskSheet extends StatelessWidget {
+class OrdersPage extends StatelessWidget {
   final tasks = OrderInfo.fetchAll();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 20),
-      child: ListView.builder(
-        itemCount: tasks.length,
-        itemBuilder: (context, index) => _itemBuilder(context, tasks[index]),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Orders'),
+        backgroundColor: Colors.black,
+        brightness: Brightness.light,
+      ),
+      body: Container(
+        margin: EdgeInsets.symmetric(vertical: 20),
+        child: ListView.builder(
+          itemCount: tasks.length,
+          itemBuilder: (context, index) => _itemBuilder(context, tasks[index]),
+        ),
       ),
     );
   }

@@ -3,15 +3,14 @@ import 'package:bizzhome/widgets/imageBanner.dart';
 import 'package:bizzhome/widgets/taskTile.dart';
 import 'package:flutter/material.dart';
 
-class TaskDetail extends StatelessWidget {
+class TaskDetailPage extends StatelessWidget {
   final int _taskID;
 
-  TaskDetail(this._taskID);
+  TaskDetailPage(this._taskID);
 
   @override
   Widget build(BuildContext context) {
     final task = Task.fetchByID(_taskID);
-    debugPrint(task.title);
 
     return Scaffold(
       appBar: AppBar(

@@ -1,15 +1,18 @@
 import 'package:bizzhome/app.dart';
-import 'package:bizzhome/screens/items.dart';
+import 'package:bizzhome/models/Auth.dart';
+import 'package:bizzhome/models/Review.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-class Home extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _HomeState extends State<Home> {
+class _HomePageState extends State<HomePage> {
+  final user = Auth.getUserDetails();
+
   final List<List<double>> charts = [
     [
       0.0,
@@ -227,35 +230,16 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        color: Colors.transparent,
+    final reviewCount = Review.getCount();
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('BizzHome'),
+        backgroundColor: Colors.black,
+        brightness: Brightness.light,
+      ),
+      body: Container(
         margin: EdgeInsets.symmetric(vertical: 10),
-        // appBar: AppBar(
-        //   elevation: 2.0,
-        //   backgroundColor: Colors.white,
-        //   title: Text('Dashboard',
-        //       style: TextStyle(
-        //           color: Colors.black,
-        //           fontWeight: FontWeight.w700,
-        //           fontSize: 30.0)),
-        //   actions: <Widget>[
-        //     Container(
-        //       margin: EdgeInsets.only(right: 8.0),
-        //       child: Row(
-        //         mainAxisAlignment: MainAxisAlignment.center,
-        //         crossAxisAlignment: CrossAxisAlignment.center,
-        //         children: <Widget>[
-        //           Text('beclothed.com',
-        //               style: TextStyle(
-        //                   color: Colors.blue,
-        //                   fontWeight: FontWeight.w700,
-        //                   fontSize: 14.0)),
-        //           Icon(Icons.arrow_drop_down, color: Colors.black54)
-        //         ],
-        //       ),
-        //     )
-        //   ],
-        // ),
         child: StaggeredGridView.count(
           crossAxisCount: 2,
           crossAxisSpacing: 12.0,
@@ -263,37 +247,41 @@ class _HomeState extends State<Home> {
           padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           children: <Widget>[
             _buildTile(
-              Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text('Total Views',
-                              style: TextStyle(color: Colors.blueAccent)),
-                          Text('265K',
+                Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(user.bio,
+                                style: TextStyle(color: Colors.blueAccent)),
+                            Text(
+                              "@" + user.username,
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 34.0))
-                        ],
-                      ),
-                      Material(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(24.0),
-                          child: Center(
-                              child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Icon(Icons.timeline,
-                                color: Colors.white, size: 30.0),
-                          )))
-                    ]),
-              ),
-            ),
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 34.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Material(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(24.0),
+                            child: Center(
+                                child: Padding(
+                              padding: const EdgeInsets.all(0),
+                              child: Image.asset(
+                                user.avatar,
+                              ),
+                            )))
+                      ]),
+                ),
+                onTap: () => Navigator.of(context).pushNamed(ProfileRoute)),
             _buildTile(
               Padding(
                 padding: const EdgeInsets.all(24.0),
@@ -321,30 +309,31 @@ class _HomeState extends State<Home> {
               ),
             ),
             _buildTile(
-              Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Material(
-                          color: Colors.amber,
-                          shape: CircleBorder(),
-                          child: Padding(
-                            padding: EdgeInsets.all(16.0),
-                            child: Icon(Icons.notifications,
-                                color: Colors.white, size: 30.0),
-                          )),
-                      Padding(padding: EdgeInsets.only(bottom: 16.0)),
-                      Text('Alerts',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 24.0)),
-                      Text('All ', style: TextStyle(color: Colors.white54)),
-                    ]),
-              ),
-            ),
+                Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Material(
+                            color: Colors.amber,
+                            shape: CircleBorder(),
+                            child: Padding(
+                              padding: EdgeInsets.all(16.0),
+                              child: Icon(Icons.notifications,
+                                  color: Colors.white, size: 30.0),
+                            )),
+                        Padding(padding: EdgeInsets.only(bottom: 16.0)),
+                        Text('Alerts',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 24.0)),
+                        Text('All ', style: TextStyle(color: Colors.white54)),
+                      ]),
+                ),
+                onTap: () =>
+                    Navigator.of(context).pushNamed(NotificationRoute)),
             _buildTile(
               Padding(
                   padding: const EdgeInsets.all(20.0),
@@ -391,9 +380,9 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text('Shop Items',
+                          Text('Reviews',
                               style: TextStyle(color: Colors.redAccent)),
-                          Text('173',
+                          Text(reviewCount.toString(),
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w700,
@@ -421,7 +410,9 @@ class _HomeState extends State<Home> {
             StaggeredTile.extent(2, 220.0),
             StaggeredTile.extent(2, 110.0),
           ],
-        ));
+        ),
+      ),
+    );
   }
 
   Widget _buildTile(Widget child, {Function() onTap}) {
