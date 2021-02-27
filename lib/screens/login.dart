@@ -12,31 +12,70 @@ class LoginPage extends StatelessWidget {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  void showInSnackBar(String value) {
+  void showInSnackBar(String value, Color color) {
     _scaffoldKey.currentState.showSnackBar(
       new SnackBar(
-        backgroundColor: Colors.red,
+        backgroundColor: color,
         content: Text(value, style: TextStyle(color: Colors.white)),
       ),
     );
   }
 
-  _onLoginTap(BuildContext context) {
-    final authorizeUser =
-        Auth.authorizeUser(emailController.text, passwordController.text);
-    if (authorizeUser != null) {
-      Navigator.of(context).pushNamed(DashboardRoute);
+  String _validateEmail(String value) {
+    value = value.trim();
+
+    if (emailController.text != null) {
+      if (value.isEmpty) {
+        return 'Email can\'t be empty';
+      } else if (!value.contains(RegExp(
+          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+"))) {
+        return 'Enter a correct email address';
+      }
+    }
+
+    return null;
+  }
+
+  String _validatePassword(String value) {
+    value = value.trim();
+
+    if (passwordController.text != null) {
+      if (value.isEmpty) {
+        return 'Password can\'t be empty';
+      } else if (value.length < 6) {
+        return 'Length of password should be greater than 6';
+      }
+    }
+
+    return null;
+  }
+
+  _onLoginTap(BuildContext context) async {
+    if (_validateEmail(emailController.text) == null &&
+        _validatePassword(passwordController.text) == null) {
+      final signInUser =
+          await Auth.signInUser(emailController.text, passwordController.text);
+      print(signInUser);
+      print("Dasda");
+
+      if (signInUser) {
+        // Navigator.of(context).pushNamed(DashboardRoute);
+        showInSnackBar("Done !!", Colors.red);
+      } else {
+        emailController.text = "";
+        passwordController.text = "";
+        showInSnackBar("Error !! Invalid username or password.", Colors.red);
+      }
     } else {
-      emailController.text = "";
-      passwordController.text = "";
-      showInSnackBar("Error !! Invalid Username or Password.");
+      showInSnackBar(
+          "Error !! Please enter valid email & password.", Colors.red);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    emailController.text = "admin";
-    passwordController.text = "admin";
+    emailController.text = "admin@gmail.com";
+    passwordController.text = "admin1234";
     return Scaffold(
       key: _scaffoldKey,
       body: Container(
