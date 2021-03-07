@@ -53,14 +53,11 @@ class LoginPage extends StatelessWidget {
   _onLoginTap(BuildContext context) async {
     if (_validateEmail(emailController.text) == null &&
         _validatePassword(passwordController.text) == null) {
-      final signInUser =
+      bool signInUser =
           await Auth.signInUser(emailController.text, passwordController.text);
-      print(signInUser);
-      print("Dasda");
 
       if (signInUser) {
-        // Navigator.of(context).pushNamed(DashboardRoute);
-        showInSnackBar("Done !!", Colors.red);
+        Navigator.of(context).pushNamed(DashboardRoute);
       } else {
         emailController.text = "";
         passwordController.text = "";

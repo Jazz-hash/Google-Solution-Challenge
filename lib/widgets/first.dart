@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bizzhome/screens/register.dart';
+import 'package:page_transition/page_transition.dart';
 
 class FirstTime extends StatefulWidget {
   @override
@@ -27,8 +28,11 @@ class _FirstTimeState extends State<FirstTime> {
             FlatButton(
               padding: EdgeInsets.all(0),
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => RegisterPage()));
+                Navigator.push(
+                    context,
+                    PageTransition(
+                        type: PageTransitionType.bottomToTop,
+                        child: RegisterPage()));
               },
               child: Text(
                 'Sign up',

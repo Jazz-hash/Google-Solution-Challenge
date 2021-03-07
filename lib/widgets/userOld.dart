@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bizzhome/screens/login.dart';
+import 'package:page_transition/page_transition.dart';
 
 class UserOld extends StatelessWidget {
   @override
@@ -23,7 +24,10 @@ class UserOld extends StatelessWidget {
               padding: EdgeInsets.all(0),
               onPressed: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => LoginPage()));
+                    context,
+                    PageTransition(
+                        type: PageTransitionType.bottomToTop,
+                        child: LoginPage()));
               },
               child: Text(
                 'Sign in',

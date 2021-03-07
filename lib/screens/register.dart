@@ -1,8 +1,13 @@
+import 'dart:async';
+
+import 'package:bizzhome/app.dart';
 import 'package:bizzhome/models/Auth.dart';
+import 'package:bizzhome/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:bizzhome/widgets/signup.dart';
 import 'package:bizzhome/widgets/textNew.dart';
 import 'package:bizzhome/widgets/userOld.dart';
+import 'package:page_transition/page_transition.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -12,6 +17,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
+  Timer timer;
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -53,17 +59,23 @@ class _RegisterPageState extends State<RegisterPage> {
     return null;
   }
 
-  _onRegisterTap(BuildContext context) {
+  _onRegisterTap(BuildContext context) async {
     if (_validateEmail(emailController.text) == null &&
         _validatePassword(passwordController.text) == null) {
-      final _registerUser =
-          Auth.registerUser(emailController.text, passwordController.text);
+      final _registerUser = await Auth.registerUser(
+          emailController.text, passwordController.text);
       print(_registerUser);
-      // if (registerUser) {
-      showInSnackBar("Success !! Now you can login.", Colors.green);
-      // } else {
-      // showInSnackBar("Oops !! Something went wrong.", Colors.red);
-      // }
+      if (_registerUser) {
+        showInSnackBar("Success !! Now you can login.", Colors.green);
+        timer = new Timer(new Duration(seconds: 2), () {
+          Navigator.push(
+              context,
+              PageTransition(
+                  type: PageTransitionType.bottomToTop, child: LoginPage()));
+        });
+      } else {
+        showInSnackBar("Oops !! Something went wrong.", Colors.red);
+      }
     } else {
       showInSnackBar(
           "Error !! Please enter valid email & password.", Colors.red);

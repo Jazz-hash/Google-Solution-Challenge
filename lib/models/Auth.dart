@@ -1,6 +1,5 @@
 import 'package:bizzhome/models/User.dart';
 import 'package:bizzhome/utils/authentication.dart';
-import 'package:flutter/cupertino.dart';
 
 class Auth {
   static User getUserDetails() {
@@ -38,26 +37,29 @@ class Auth {
   }
 
   static registerUser(String email, String password) async {
+    bool flag = false;
     await registerWithEmailPassword(email, password).then((result) {
       if (result != null) {
-        return true;
+        flag = true;
       }
     }).catchError((error) {
       print('Registration Error: $error');
-      return false;
+      flag = false;
     });
+    return flag;
   }
 
   static signInUser(String email, String password) async {
+    bool flag = false;
     await signInWithEmailPassword(email, password).then((result) {
+      print(result);
       if (result != null) {
-        return true;
-      } else {
-        return false;
+        flag = true;
       }
     }).catchError((error) {
       print('Login Error: $error');
-      return false;
+      flag = false;
     });
+    return flag;
   }
 }
