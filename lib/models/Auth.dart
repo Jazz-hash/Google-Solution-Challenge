@@ -1,4 +1,5 @@
 import 'package:bizzhome/models/User.dart';
+import 'package:bizzhome/net/firebase.dart';
 import 'package:bizzhome/utils/authentication.dart';
 
 class Auth {
@@ -42,6 +43,7 @@ class Auth {
       if (result != null) {
         flag = true;
       }
+      userSetup(email);
     }).catchError((error) {
       print('Registration Error: $error');
       flag = false;

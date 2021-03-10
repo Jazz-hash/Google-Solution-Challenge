@@ -71,7 +71,7 @@ class _RegisterPageState extends State<RegisterPage> {
           Navigator.push(
               context,
               PageTransition(
-                  type: PageTransitionType.bottomToTop, child: LoginPage()));
+                  type: PageTransitionType.rightToLeft, child: LoginPage()));
         });
       } else {
         showInSnackBar("Oops !! Something went wrong.", Colors.red);

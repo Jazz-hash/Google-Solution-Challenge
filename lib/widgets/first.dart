@@ -31,7 +31,7 @@ class _FirstTimeState extends State<FirstTime> {
                 Navigator.push(
                     context,
                     PageTransition(
-                        type: PageTransitionType.bottomToTop,
+                        type: PageTransitionType.rightToLeft,
                         child: RegisterPage()));
               },
               child: Text(
