@@ -239,6 +239,7 @@ class _HomePageState extends State<HomePage> {
         brightness: Brightness.light,
       ),
       body: Container(
+        color: Colors.black87,
         margin: EdgeInsets.symmetric(vertical: 10),
         child: StaggeredGridView.count(
           crossAxisCount: 2,
