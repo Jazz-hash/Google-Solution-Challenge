@@ -37,13 +37,13 @@ class Auth {
     }
   }
 
-  static registerUser(String email, String password) async {
+  static registerUser(String email, String password, String type) async {
     bool flag = false;
     await registerWithEmailPassword(email, password).then((result) {
       if (result != null) {
         flag = true;
       }
-      userSetup(email);
+      userSetup(type);
     }).catchError((error) {
       print('Registration Error: $error');
       flag = false;

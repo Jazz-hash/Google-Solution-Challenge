@@ -21,7 +21,11 @@ class MyTasksPage extends StatelessWidget {
     final tasks = Task.fetchAll();
 
     return Scaffold(
-      appBar: AppBar(title: Text("My Tasks")),
+      appBar: AppBar(
+        title: Text("My Tasks"),
+        backgroundColor: Colors.black,
+        brightness: Brightness.light,
+      ),
       body: Container(
         child: Column(
           children: [

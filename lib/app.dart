@@ -24,7 +24,7 @@ class App extends StatelessWidget {
       onGenerateRoute: _routes(),
       theme: _theme(),
       darkTheme: ThemeData.dark().copyWith(primaryColor: Colors.black),
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.dark,
     );
   }
 

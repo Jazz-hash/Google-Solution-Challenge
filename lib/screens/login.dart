@@ -101,7 +101,15 @@ class LoginPage extends StatelessWidget {
                         color: Colors.white,
                       ),
                       decoration: InputDecoration(
-                        border: InputBorder.none,
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
                         fillColor: Colors.lightBlueAccent,
                         labelText: 'Email',
                         labelStyle: TextStyle(
@@ -123,7 +131,15 @@ class LoginPage extends StatelessWidget {
                       ),
                       obscureText: true,
                       decoration: InputDecoration(
-                        border: InputBorder.none,
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
                         labelText: 'Password',
                         labelStyle: TextStyle(
                           color: Colors.white70,

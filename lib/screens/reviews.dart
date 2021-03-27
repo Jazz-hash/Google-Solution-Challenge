@@ -17,6 +17,8 @@ class _ReviewsPageState extends State<ReviewsPage> {
           title: Text(
             'Reviews (${reviews.length})',
           ),
+          backgroundColor: Colors.black,
+          brightness: Brightness.light,
         ),
         body: ListView.builder(
           itemCount: reviews.length,

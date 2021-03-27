@@ -18,6 +18,7 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
   Timer timer;
+  String dropdownValue = 'To Get Some Work';
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -63,7 +64,7 @@ class _RegisterPageState extends State<RegisterPage> {
     if (_validateEmail(emailController.text) == null &&
         _validatePassword(passwordController.text) == null) {
       final _registerUser = await Auth.registerUser(
-          emailController.text, passwordController.text);
+          emailController.text, passwordController.text, dropdownValue);
       print(_registerUser);
       if (_registerUser) {
         showInSnackBar("Success !! Now you can login.", Colors.green);
@@ -114,7 +115,15 @@ class _RegisterPageState extends State<RegisterPage> {
                         color: Colors.white,
                       ),
                       decoration: InputDecoration(
-                        border: InputBorder.none,
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
                         fillColor: Colors.lightBlueAccent,
                         labelText: 'Email',
                         labelStyle: TextStyle(
@@ -136,12 +145,60 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       obscureText: true,
                       decoration: InputDecoration(
-                        border: InputBorder.none,
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
                         labelText: 'Password',
                         labelStyle: TextStyle(
                           color: Colors.white70,
                         ),
                       ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, left: 50, right: 50),
+                  child: Container(
+                    height: 60,
+                    width: MediaQuery.of(context).size.width,
+                    child: DropdownButton<String>(
+                      value: dropdownValue,
+                      icon: Icon(Icons.arrow_drop_down),
+                      iconSize: 24,
+                      elevation: 16,
+                      style: TextStyle(color: Colors.white),
+                      underline: Container(
+                        height: 2,
+                        color: Colors.white60,
+                      ),
+                      onChanged: (String newValue) {
+                        setState(() {
+                          dropdownValue = newValue;
+                        });
+                      },
+                      items: <String>['To Get Some Work', 'To Hire Workers']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, left: 50, right: 50),
+                  child: Text(
+                    "That's all for now. You also need to fill your profile in order to have advantage of our app properly !",
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: Colors.white60,
                     ),
                   ),
                 ),
