@@ -6,9 +6,7 @@ class Auth {
   static User getUserDetails() {
     return User(
       id: 1,
-      username: "Jazz-hash",
-      fullname: "Muhammad Jazzel Mehmood",
-      password: "passwordishard",
+      displayName: "Muhammad Jazzel Mehmood",
       avatar: "assets/images/user.jpg",
       bio: "This is bio",
       skills_background: "Bht saray hein ! ",
@@ -22,9 +20,7 @@ class Auth {
     if (email == "admin" && password == "admin") {
       return User(
         id: 1,
-        username: "Jazz-hash",
-        fullname: "Muhammad Jazzel Mehmood",
-        password: "passwordishard",
+        displayName: "Muhammad Jazzel Mehmood",
         avatar: "assets/images/user.jpg",
         bio: "This is bio",
         skills_background: "Bht saray hein ! ",

@@ -260,7 +260,7 @@ class _HomePageState extends State<HomePage> {
                             Text(user.bio,
                                 style: TextStyle(color: Colors.blueAccent)),
                             Text(
-                              "@" + user.username,
+                              "@" + user.displayName,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700,

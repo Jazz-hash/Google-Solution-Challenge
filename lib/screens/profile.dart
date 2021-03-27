@@ -1,4 +1,5 @@
 import 'package:bezier_chart/bezier_chart.dart';
+import 'package:bizzhome/app.dart';
 import 'package:bizzhome/models/Auth.dart';
 import 'package:flutter/material.dart';
 import 'package:folding_cell/folding_cell.dart';
@@ -50,7 +51,7 @@ class ProfilePage extends StatelessWidget {
                   Text(""),
                   Center(
                     child: Text(
-                      user.fullname,
+                      user.displayName,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 25,
@@ -147,7 +148,8 @@ class ProfilePage extends StatelessWidget {
                 textColor: Colors.white,
                 color: Color(0xFFE5634D),
                 splashColor: Colors.white.withOpacity(0.5),
-                onPressed: () {},
+                onPressed: () =>
+                    Navigator.of(context).pushNamed(ProfileEditRoute),
                 child: Padding(
                   padding: EdgeInsets.all(10),
                   child: Center(
@@ -287,7 +289,7 @@ class ProfilePage extends StatelessWidget {
           children: [
             Text(""),
             Text(
-              "@" + user.username,
+              "@" + user.displayName,
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 18,

@@ -1,3 +1,4 @@
+import 'package:bizzhome/screens/edit_profile.dart';
 import 'package:bizzhome/screens/reviews.dart';
 import 'package:bizzhome/screens/login.dart';
 import 'package:bizzhome/screens/notifications.dart';
@@ -15,6 +16,7 @@ const RegisterRoute = "/register";
 const ItemsRoute = "/items";
 const TaskDetailRoute = "/task_detail";
 const ProfileRoute = "/profile";
+const ProfileEditRoute = "/edit_profile";
 const NotificationRoute = "/notifications";
 
 class App extends StatelessWidget {
@@ -50,6 +52,9 @@ class App extends StatelessWidget {
           break;
         case ProfileRoute:
           screen = ProfilePage();
+          break;
+        case ProfileEditRoute:
+          screen = EditProfilePage();
           break;
         case NotificationRoute:
           screen = NotificationsPage();
