@@ -1,3 +1,4 @@
+import 'package:bizzhome/app.dart';
 import 'package:bizzhome/widgets/navigator.dart';
 import 'package:flutter/material.dart';
 
@@ -32,8 +33,7 @@ class _ButtonLoginState extends State<ButtonLogin> {
         ),
         child: FlatButton(
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Dashboard()));
+            Navigator.of(context).pushNamed(DashboardRoute);
           },
           child: Align(
               alignment: Alignment.center,

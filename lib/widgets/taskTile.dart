@@ -6,10 +6,20 @@ const TaskTileHeight = 100.0;
 class TaskTile extends StatelessWidget {
   final String title;
   final String date;
+  final String status;
   final String description;
   final bool darkTheme;
 
-  TaskTile(this.title, this.date, this.description, this.darkTheme);
+  TaskTile(
+      this.title, this.date, this.status, this.description, this.darkTheme);
+
+  bool checkTaskStatus(String status) {
+    if (status == "Completed") {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +41,48 @@ class TaskTile extends StatelessWidget {
             ),
             Text(
               date.toUpperCase(),
-              style: Theme.of(context).textTheme.subtitle.copyWith(color: textColor),
-            ),
-            Text(
-              description.toUpperCase(),
               style: Theme.of(context)
                   .textTheme
-                  .caption
+                  .subtitle
                   .copyWith(color: textColor),
             ),
+            checkTaskStatus(status)
+                ? Row(
+                    children: [
+                      Icon(
+                        Icons.check,
+                        color: Colors.white,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                        child: Text(
+                          status.toUpperCase(),
+                          style: Theme.of(context)
+                              .textTheme
+                              .caption
+                              .copyWith(color: textColor),
+                        ),
+                      ),
+                    ],
+                  )
+                : Row(
+                    children: [
+                      Icon(
+                        Icons.construction,
+                        color: Colors.white,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                        child: Text(
+                          status.toUpperCase(),
+                          style: Theme.of(context)
+                              .textTheme
+                              .caption
+                              .copyWith(color: textColor),
+                        ),
+                      ),
+                    ],
+                  ),
           ]),
     );
   }

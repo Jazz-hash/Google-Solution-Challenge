@@ -8,6 +8,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="bizzhome">
+  <meta name="google-signin-client_id" content="470062242170-paktbqh15rqrp544u5682nhif1phqqbp.apps.googleusercontent.com">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
   <link rel="icon" type="image/png" href="favicon.png"/>
   <title>BizzHome | We got you</title>
@@ -21,6 +22,20 @@
       });
     }
   </script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyDYDWMizebW2LyVwhYY_h9obfpZUupHy0s",
+    authDomain: "bizzhome-f78ca.firebaseapp.com",
+    projectId: "bizzhome-f78ca",
+    storageBucket: "bizzhome-f78ca.appspot.com",
+    messagingSenderId: "470062242170",
+    appId: "1:470062242170:web:3694ecb5a8f68f08361ec3"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
   <script src="main.dart.js" type="application/javascript"></script>
 </body>
 </html>
