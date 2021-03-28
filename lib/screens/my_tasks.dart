@@ -27,6 +27,7 @@ class MyTasksPage extends StatelessWidget {
         brightness: Brightness.light,
       ),
       body: Container(
+        margin: EdgeInsets.symmetric(vertical: 10),
         child: Column(
           children: [
             Container(
@@ -66,7 +67,7 @@ class MyTasksPage extends StatelessWidget {
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black87.withOpacity(0.5),
+                    color: Colors.white.withOpacity(0.5),
                     spreadRadius: 5,
                     blurRadius: 7,
                     offset: Offset(0, 3), // changes position of shadow
@@ -75,10 +76,13 @@ class MyTasksPage extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: tasks.length,
-                itemBuilder: (context, index) =>
-                    _itemBuilder(context, tasks[index]),
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: ListView.builder(
+                  itemCount: tasks.length,
+                  itemBuilder: (context, index) =>
+                      _itemBuilder(context, tasks[index]),
+                ),
               ),
             ),
           ],

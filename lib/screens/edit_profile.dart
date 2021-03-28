@@ -1,8 +1,10 @@
 import 'package:bizzhome/models/Auth.dart';
+import 'package:bizzhome/models/User.dart';
+import 'package:bizzhome/net/firebase.dart';
 import 'package:flutter/material.dart';
 
 class EditProfilePage extends StatelessWidget {
-  final user = Auth.getUserDetails();
+  final user = Auth.returnUserDetails();
   final _formKey = GlobalKey<FormState>();
 
   TextEditingController nameController = new TextEditingController();
@@ -57,10 +59,9 @@ class EditProfilePage extends StatelessWidget {
                       controller: nameController,
                       decoration: const InputDecoration(
                         icon: const Icon(Icons.person, color: Colors.white),
-                        labelStyle: TextStyle(color: Colors.white),
                         hintText:
                             'Name ( It will be displayed to other users )',
-                        labelText: 'Name',
+                        // labelText: 'Name',
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
@@ -79,8 +80,7 @@ class EditProfilePage extends StatelessWidget {
                       maxLines: 3,
                       decoration: const InputDecoration(
                         icon: const Icon(Icons.email, color: Colors.white),
-                        labelStyle: TextStyle(color: Colors.white),
-                        labelText: 'Bio',
+                        hintText: 'Bio ( little information about you ) ',
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
@@ -100,7 +100,8 @@ class EditProfilePage extends StatelessWidget {
                       decoration: const InputDecoration(
                         icon: const Icon(Icons.work, color: Colors.white),
                         labelStyle: TextStyle(color: Colors.white),
-                        labelText: 'Skills background',
+                        labelText:
+                            'Skills ( Brief information of what you can do ) ',
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
@@ -119,7 +120,8 @@ class EditProfilePage extends StatelessWidget {
                       maxLines: 3,
                       decoration: InputDecoration(
                         icon: Icon(Icons.book, color: Colors.white),
-                        labelText: 'Educational background',
+                        labelText:
+                            'Education ( Brief information of your educational background ) ',
                         labelStyle: TextStyle(color: Colors.white),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
@@ -153,11 +155,34 @@ class EditProfilePage extends StatelessWidget {
                       ),
                     ),
                     Container(
-                        padding: const EdgeInsets.only(left: 150.0, top: 30.0),
-                        child: new RaisedButton(
-                          child: const Text('Submit'),
-                          onPressed: null,
+                      margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                      child: FlatButton(
+                        textColor: Colors.white,
+                        color: Color(0xFFE5634D),
+                        splashColor: Colors.white.withOpacity(0.5),
+                        onPressed: () => Auth.updateUserProfile(User(
+                          avatar: "dsad",
+                          bio: bioController.text,
+                          date_of_birth: dobController.text,
+                          displayName: nameController.text,
+                          educational_background: eduController.text,
+                          registered_date: "Dsadas",
+                          skills_background: skillsController.text,
                         )),
+                        child: Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.edit),
+                                Text(" Edit profile"),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

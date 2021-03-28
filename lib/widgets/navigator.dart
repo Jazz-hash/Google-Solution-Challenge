@@ -34,16 +34,16 @@ class _DashboardPageState extends State<DashboardPage> {
       bottomNavigationBar: CurvedNavigationBar(
           color: Colors.black,
           backgroundColor: Colors.transparent,
-          buttonBackgroundColor: Colors.white,
+          buttonBackgroundColor: Colors.red,
           height: 50,
           animationCurve: Curves.bounceInOut,
           animationDuration: Duration(milliseconds: 200),
           index: 0,
           items: [
-            Icon(Icons.home, size: 20, color: Colors.grey),
-            Icon(Icons.favorite, size: 20, color: Colors.grey),
-            Icon(Icons.list, size: 20, color: Colors.grey),
-            Icon(Icons.settings, size: 20, color: Colors.grey),
+            Icon(Icons.home, size: 20, color: Colors.white),
+            Icon(Icons.favorite, size: 20, color: Colors.white),
+            Icon(Icons.list, size: 20, color: Colors.white),
+            Icon(Icons.settings, size: 20, color: Colors.white),
           ],
           onTap: (index) {
             setState(() {

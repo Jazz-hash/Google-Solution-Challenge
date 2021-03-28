@@ -1,5 +1,4 @@
 class User {
-  final int id;
   final String displayName;
   final String avatar;
   final String bio;
@@ -9,7 +8,6 @@ class User {
   final String date_of_birth;
 
   User({
-    this.id,
     this.displayName,
     this.avatar,
     this.bio,
