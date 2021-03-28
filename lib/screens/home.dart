@@ -303,33 +303,6 @@ class _HomePageState extends State<HomePage> {
                 ),
                 onTap: () => Navigator.of(context).pushNamed(ProfileRoute)),
             _buildTile(
-<<<<<<< HEAD
-                Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Material(
-                            color: Colors.teal,
-                            shape: CircleBorder(),
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Icon(Icons.settings_applications,
-                                  color: Colors.white, size: 30.0),
-                            )),
-                        Padding(padding: EdgeInsets.only(bottom: 16.0)),
-                        Text('General',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 24.0)),
-                        Text('Images, Videos',
-                            style: TextStyle(color: Colors.white54)),
-                      ]),
-                ),
-                onTap: () => _getdetails()),
-=======
               Padding(
                 padding: const EdgeInsets.all(24.0),
                 child: Column(
@@ -402,7 +375,6 @@ class _HomePageState extends State<HomePage> {
                     ]),
               ),
             ),
->>>>>>> 28866a6880162b177c61d10b210f722226ef82dd
             _buildTile(
                 Padding(
                   padding: const EdgeInsets.all(24.0),
