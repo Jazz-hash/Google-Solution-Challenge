@@ -289,48 +289,149 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Material(
-                          color: Colors.teal,
-                          shape: CircleBorder(),
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Icon(Icons.settings_applications,
-                                color: Colors.white, size: 30.0),
-                          )),
-                      Padding(padding: EdgeInsets.only(bottom: 16.0)),
-                      Text('General',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 24.0)),
-                      Text('Images, Videos',
-                          style: TextStyle(color: Colors.white54)),
+                      // Material(
+                      //     color: Colors.teal,
+                      //     shape: CircleBorder(),
+                      //     child: Padding(
+                      //       padding: const EdgeInsets.all(16.0),
+                      //       child: Icon(Icons.settings_applications,
+                      //           color: Colors.white, size: 30.0),
+                      //     )),
+                      // Padding(padding: EdgeInsets.only(bottom: 16.0)),
+                      Row(
+                        // mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Material(
+                              color: Colors.teal,
+                              shape: CircleBorder(),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Icon(Icons.assessment_outlined,
+                                    color: Colors.white, size: 30.0),
+                              )),
+                          Padding(padding: EdgeInsets.only(right: 20)),
+                          Text('Orders',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 24.0)),
+                        ],
+                      ),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Column(
+                            children: [
+                              Padding(padding: EdgeInsets.only(bottom: 10.0)),
+                              Text('Completed',
+                                  style: TextStyle(
+                                    color: Colors.green,
+                                  )),
+                              Text('294',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 28.0)),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Padding(padding: EdgeInsets.only(bottom: 10.0)),
+                              Text('Pending',
+                                  style: TextStyle(
+                                    color: Colors.redAccent,
+                                  )),
+                              Text('8',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 28.0)),
+                            ],
+                          ),
+                        ],
+                      ),
                     ]),
               ),
             ),
             _buildTile(
                 Padding(
                   padding: const EdgeInsets.all(24.0),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Material(
-                            color: Colors.amber,
-                            shape: CircleBorder(),
-                            child: Padding(
-                              padding: EdgeInsets.all(16.0),
-                              child: Icon(Icons.notifications,
-                                  color: Colors.white, size: 30.0),
-                            )),
-                        Padding(padding: EdgeInsets.only(bottom: 16.0)),
-                        Text('Alerts',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 24.0)),
-                        Text('All ', style: TextStyle(color: Colors.white54)),
-                      ]),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Row(
+                              children: [
+                                Material(
+                                    color: Colors.amber,
+                                    shape: CircleBorder(),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(10.0),
+                                      child: Icon(Icons.star_rate_sharp,
+                                          color: Colors.white, size: 30.0),
+                                    )),
+                                Padding(padding: EdgeInsets.only(right: 20)),
+                                Text('Insights',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 24.0)),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(60, 10, 0, 0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text('Average Rating',
+                                      style: TextStyle(
+                                        color: Colors.pink,
+                                      )),
+                                  Text('4.3 ',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 34.0)),
+                                ],
+                              ),
+                            ),
+                          ]),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(padding: EdgeInsets.fromLTRB(0, 0, 35, 30)),
+                          Text('Average Response Time',
+                              style: TextStyle(
+                                color: Colors.pink,
+                              )),
+                          Text('4 Hours',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20.0)),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text('Last Order Delivered',
+                              style: TextStyle(
+                                color: Colors.pink,
+                              )),
+                          Text('17 Hours Ago',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20.0)),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 onTap: () =>
                     Navigator.of(context).pushNamed(NotificationRoute)),
