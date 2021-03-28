@@ -274,11 +274,19 @@ class _HomePageState extends State<HomePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(
-                                _firebaseAuth.currentUser.uid == ""
-                                    ? ""
-                                    : _firebaseAuth.currentUser.uid,
-                                style: TextStyle(color: Colors.blueAccent)),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.create_rounded,
+                                  color: Colors.white,
+                                  size: 14,
+                                ),
+                                Padding(padding: EdgeInsets.only(left: 5)),
+                                Text("Edit profile",
+                                    style: TextStyle(
+                                        fontSize: 14, color: Colors.white)),
+                              ],
+                            ),
                             Text(
                               "@" + name,
                               style: TextStyle(
@@ -290,13 +298,18 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                         Material(
-                            color: Colors.blue,
+                            color: Colors.transparent,
                             borderRadius: BorderRadius.circular(24.0),
                             child: Center(
                                 child: Padding(
                               padding: const EdgeInsets.all(0),
-                              child: Image.asset(
-                                user.avatar,
+                              child: CircleAvatar(
+                                child: ClipOval(
+                                  child: Image.asset(
+                                    user.avatar,
+                                  ),
+                                ),
+                                maxRadius: 35,
                               ),
                             )))
                       ]),
@@ -309,65 +322,54 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      // Material(
-                      //     color: Colors.teal,
-                      //     shape: CircleBorder(),
-                      //     child: Padding(
-                      //       padding: const EdgeInsets.all(16.0),
-                      //       child: Icon(Icons.settings_applications,
-                      //           color: Colors.white, size: 30.0),
-                      //     )),
-                      // Padding(padding: EdgeInsets.only(bottom: 16.0)),
                       Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Material(
-                              color: Colors.teal,
+                              color: Colors.white,
                               shape: CircleBorder(),
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
                                 child: Icon(Icons.assessment_outlined,
-                                    color: Colors.white, size: 30.0),
+                                    color: Color(0xFFEB5757), size: 20.0),
                               )),
-                          Padding(padding: EdgeInsets.only(right: 20)),
+                          Padding(padding: EdgeInsets.only(right: 15)),
                           Text('Orders',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 24.0)),
+                                  fontSize: 20.0)),
                         ],
                       ),
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Column(
                             children: [
-                              Padding(padding: EdgeInsets.only(bottom: 10.0)),
-                              Text('Completed',
-                                  style: TextStyle(
-                                    color: Colors.green,
-                                  )),
+                              Padding(
+                                  padding:
+                                      EdgeInsets.only(top: 10, bottom: 8.0)),
+                              Icon(Icons.done, color: Colors.white),
+                              Padding(padding: EdgeInsets.only(top: 5)),
                               Text('294',
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 28.0)),
+                                      fontSize: 24.0)),
                             ],
                           ),
                           Column(
                             children: [
-                              Padding(padding: EdgeInsets.only(bottom: 10.0)),
-                              Text('Pending',
-                                  style: TextStyle(
-                                    color: Colors.redAccent,
-                                  )),
+                              Padding(
+                                  padding:
+                                      EdgeInsets.only(top: 10, bottom: 8.0)),
+                              Icon(Icons.construction, color: Colors.white),
+                              Padding(padding: EdgeInsets.only(top: 5)),
                               Text('8',
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 28.0)),
+                                      fontSize: 24.0)),
                             ],
                           ),
                         ],
@@ -378,80 +380,63 @@ class _HomePageState extends State<HomePage> {
             _buildTile(
                 Padding(
                   padding: const EdgeInsets.all(24.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Row(
+                          children: [
+                            Material(
+                                color: Colors.white,
+                                shape: CircleBorder(),
+                                child: Padding(
+                                  padding: EdgeInsets.all(10.0),
+                                  child: Icon(Icons.star_rate_sharp,
+                                      color: Color(0xFFEB5757), size: 20.0),
+                                )),
+                            Padding(padding: EdgeInsets.only(right: 15)),
+                            Text('Reviews',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 20.0)),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
-                            Row(
+                            Column(
                               children: [
-                                Material(
-                                    color: Colors.amber,
-                                    shape: CircleBorder(),
-                                    child: Padding(
-                                      padding: EdgeInsets.all(10.0),
-                                      child: Icon(Icons.star_rate_sharp,
-                                          color: Colors.white, size: 30.0),
-                                    )),
-                                Padding(padding: EdgeInsets.only(right: 20)),
-                                Text('Insights',
+                                Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 10, bottom: 8.0)),
+                                Icon(Icons.more_time, color: Colors.white),
+                                Padding(padding: EdgeInsets.only(top: 5)),
+                                Text(reviewCount.toString(),
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontWeight: FontWeight.w700,
+                                        fontWeight: FontWeight.bold,
                                         fontSize: 24.0)),
                               ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(60, 10, 0, 0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text('Average Rating',
-                                      style: TextStyle(
-                                        color: Colors.pink,
-                                      )),
-                                  Text('4.3 ',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 34.0)),
-                                ],
-                              ),
+                            Column(
+                              children: [
+                                Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 10, bottom: 8.0)),
+                                Icon(Icons.history, color: Colors.white),
+                                Padding(padding: EdgeInsets.only(top: 5)),
+                                Text('8',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 24.0)),
+                              ],
                             ),
-                          ]),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(padding: EdgeInsets.fromLTRB(0, 0, 35, 30)),
-                          Text('Average Response Time',
-                              style: TextStyle(
-                                color: Colors.pink,
-                              )),
-                          Text('4 Hours',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20.0)),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Text('Last Order Delivered',
-                              style: TextStyle(
-                                color: Colors.pink,
-                              )),
-                          Text('17 Hours Ago',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20.0)),
-                        ],
-                      ),
-                    ],
-                  ),
+                          ],
+                        ),
+                      ]),
                 ),
                 onTap: () =>
                     Navigator.of(context).pushNamed(NotificationRoute)),
@@ -471,7 +456,7 @@ class _HomePageState extends State<HomePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text('Revenue',
-                                  style: TextStyle(color: Colors.green)),
+                                  style: TextStyle(color: Colors.white)),
                               Text('\$16K',
                                   style: TextStyle(
                                       color: Colors.white,
@@ -485,7 +470,7 @@ class _HomePageState extends State<HomePage> {
                       Sparkline(
                         data: charts[actualChart],
                         lineWidth: 5.0,
-                        lineColor: Colors.greenAccent,
+                        lineColor: Colors.white,
                       )
                     ],
                   )),
@@ -502,22 +487,22 @@ class _HomePageState extends State<HomePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text('Reviews',
-                              style: TextStyle(color: Colors.redAccent)),
+                              style: TextStyle(color: Colors.white)),
                           Text(reviewCount.toString(),
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 34.0))
+                                  fontSize: 34.0)),
                         ],
                       ),
                       Material(
-                          color: Colors.red,
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(24.0),
                           child: Center(
                               child: Padding(
                             padding: EdgeInsets.all(16.0),
                             child: Icon(Icons.store,
-                                color: Colors.white, size: 30.0),
+                                color: Color(0xFFEB5757), size: 30.0),
                           )))
                     ]),
               ),
@@ -538,17 +523,28 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildTile(Widget child, {Function() onTap}) {
     return Material(
-        elevation: 14.0,
-        borderRadius: BorderRadius.circular(12.0),
-        color: Colors.black,
-        shadowColor: Color(0xFFFFFFF),
-        child: InkWell(
-            // Do onTap() if it isn't null, otherwise do print()
-            onTap: onTap != null
-                ? () => onTap()
-                : () {
-                    print('Not set yet');
-                  },
-            child: child));
+      elevation: 14.0,
+      borderRadius: BorderRadius.circular(12.0),
+      shadowColor: Color(0xFFFFFFF),
+      child: InkWell(
+        // Do onTap() if it isn't null, otherwise do print()
+        onTap: onTap != null
+            ? () => onTap()
+            : () {
+                print('Not set yet');
+              },
+        child: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment(-1.0, -2.0),
+                  end: Alignment(1.0, 2.0),
+                  colors: [Color(0xFFEB5757), Color(0xFF000000)]),
+              borderRadius: new BorderRadius.all(
+                const Radius.circular(10.0),
+              )),
+          child: child,
+        ),
+      ),
+    );
   }
 }
