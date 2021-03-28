@@ -1,6 +1,8 @@
 import 'package:bizzhome/app.dart';
 import 'package:bizzhome/models/Auth.dart';
 import 'package:bizzhome/models/Review.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -11,7 +13,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final user = Auth.getUserDetails();
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final user = Auth.returnUserDetails();
+  String name = "";
+
+  _getdetails() async {
+    final user2 = await Auth.getUserDetails();
+    print("user2");
+    setState(() {
+      name = user2["username"];
+    });
+  }
+
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _getdetails());
+  }
 
   final List<List<double>> charts = [
     [
@@ -257,10 +274,13 @@ class _HomePageState extends State<HomePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(user.bio,
+                            Text(
+                                _firebaseAuth.currentUser.uid == ""
+                                    ? ""
+                                    : _firebaseAuth.currentUser.uid,
                                 style: TextStyle(color: Colors.blueAccent)),
                             Text(
-                              "@" + user.username,
+                              "@" + name,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700,
@@ -283,31 +303,31 @@ class _HomePageState extends State<HomePage> {
                 ),
                 onTap: () => Navigator.of(context).pushNamed(ProfileRoute)),
             _buildTile(
-              Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Material(
-                          color: Colors.teal,
-                          shape: CircleBorder(),
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Icon(Icons.settings_applications,
-                                color: Colors.white, size: 30.0),
-                          )),
-                      Padding(padding: EdgeInsets.only(bottom: 16.0)),
-                      Text('General',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 24.0)),
-                      Text('Images, Videos',
-                          style: TextStyle(color: Colors.white54)),
-                    ]),
-              ),
-            ),
+                Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Material(
+                            color: Colors.teal,
+                            shape: CircleBorder(),
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Icon(Icons.settings_applications,
+                                  color: Colors.white, size: 30.0),
+                            )),
+                        Padding(padding: EdgeInsets.only(bottom: 16.0)),
+                        Text('General',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 24.0)),
+                        Text('Images, Videos',
+                            style: TextStyle(color: Colors.white54)),
+                      ]),
+                ),
+                onTap: () => _getdetails()),
             _buildTile(
                 Padding(
                   padding: const EdgeInsets.all(24.0),

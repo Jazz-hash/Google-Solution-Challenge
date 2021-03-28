@@ -3,12 +3,11 @@ import 'package:bizzhome/net/firebase.dart';
 import 'package:bizzhome/utils/authentication.dart';
 
 class Auth {
-  static User getUserDetails() {
+  static User returnUserDetails() {
+    final user = getUserID();
+    print(user);
     return User(
-      id: 1,
-      username: "Jazz-hash",
-      fullname: "Muhammad Jazzel Mehmood",
-      password: "passwordishard",
+      displayName: "Dasdasdad",
       avatar: "assets/images/user.jpg",
       bio: "This is bio",
       skills_background: "Bht saray hein ! ",
@@ -18,13 +17,15 @@ class Auth {
     );
   }
 
+  static getUserDetails() async {
+    final user = await getUserName();
+    return user;
+  }
+
   static User authorizeUser(String email, String password) {
     if (email == "admin" && password == "admin") {
       return User(
-        id: 1,
-        username: "Jazz-hash",
-        fullname: "Muhammad Jazzel Mehmood",
-        password: "passwordishard",
+        displayName: "Muhammad Jazzel Mehmood",
         avatar: "assets/images/user.jpg",
         bio: "This is bio",
         skills_background: "Bht saray hein ! ",
@@ -63,5 +64,16 @@ class Auth {
       flag = false;
     });
     return flag;
+  }
+
+  static updateUserProfile(User user) {
+    updateProfile(
+        user.displayName,
+        user.avatar,
+        user.bio,
+        user.skills_background,
+        user.educational_background,
+        user.registered_date,
+        user.date_of_birth);
   }
 }

@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatelessWidget {
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,12 +14,7 @@ class SettingsPage extends StatelessWidget {
       ),
       body: Container(
         constraints: BoxConstraints.expand(),
-        child: Text(
-          "Settings",
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
+        child: Text(_firebaseAuth.currentUser.uid),
       ),
     );
   }

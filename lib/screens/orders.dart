@@ -30,7 +30,9 @@ Widget _itemBuilder(BuildContext context, task) {
   return Center(
     child: Container(
       child: Card(
-        color: Colors.black,
+        elevation: 15,
+        color: Colors.white,
+        shadowColor: Colors.black,
         margin: EdgeInsets.all(20.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -72,7 +74,7 @@ class _OrderTitle extends StatelessWidget {
           'Delivery #${orderInfo.id} for ${orderInfo.task}',
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: Colors.black,
           ),
         ),
         Spacer(),
@@ -181,7 +183,7 @@ class _DeliveryProcesses extends StatelessWidget {
                       processes[index].name,
                       style: DefaultTextStyle.of(context)
                           .style
-                          .copyWith(fontSize: 18.0, color: Colors.white),
+                          .copyWith(fontSize: 18.0, color: Colors.black),
                     ),
                     _InnerTimeline(messages: processes[index].messages),
                   ],
@@ -191,7 +193,7 @@ class _DeliveryProcesses extends StatelessWidget {
             indicatorBuilder: (_, index) {
               if (processes[index].isCompleted) {
                 return DotIndicator(
-                  color: Color(0xFFE5634D),
+                  color: Colors.red,
                   child: Icon(
                     Icons.check,
                     color: Colors.white,
@@ -205,7 +207,7 @@ class _DeliveryProcesses extends StatelessWidget {
               }
             },
             connectorBuilder: (_, index, ___) => SolidLineConnector(
-              color: processes[index].isCompleted ? Color(0xFFE5634D) : null,
+              color: processes[index].isCompleted ? Colors.red : null,
             ),
           ),
         ),
@@ -236,7 +238,7 @@ class _OnTimeBar extends StatelessWidget {
             },
             elevation: 0,
             shape: StadiumBorder(),
-            color: Color(0xFFE5634D),
+            color: Colors.red,
             textColor: Colors.white,
             child: Text('On-time'),
           ),
@@ -245,7 +247,7 @@ class _OnTimeBar extends StatelessWidget {
         Text('Client\n${client.name}',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.black,
             )),
         SizedBox(width: 12.0),
         Container(
