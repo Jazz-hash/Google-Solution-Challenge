@@ -252,7 +252,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('BizzHome'),
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xFFEB5757),
         brightness: Brightness.light,
       ),
       body: Container(
@@ -370,7 +370,7 @@ class _HomePageState extends State<HomePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text('Revenue',
-                                  style: TextStyle(color: Colors.green)),
+                                  style: TextStyle(color: Colors.white)),
                               Text('\$16K',
                                   style: TextStyle(
                                       color: Colors.white,
@@ -384,7 +384,7 @@ class _HomePageState extends State<HomePage> {
                       Sparkline(
                         data: charts[actualChart],
                         lineWidth: 5.0,
-                        lineColor: Colors.greenAccent,
+                        lineColor: Colors.white,
                       )
                     ],
                   )),
@@ -401,7 +401,7 @@ class _HomePageState extends State<HomePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text('Reviews',
-                              style: TextStyle(color: Colors.redAccent)),
+                              style: TextStyle(color: Colors.white)),
                           Text(reviewCount.toString(),
                               style: TextStyle(
                                   color: Colors.white,
@@ -410,13 +410,13 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                       Material(
-                          color: Colors.red,
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(24.0),
                           child: Center(
                               child: Padding(
                             padding: EdgeInsets.all(16.0),
                             child: Icon(Icons.store,
-                                color: Colors.white, size: 30.0),
+                                color: Color(0xFFEB5757), size: 30.0),
                           )))
                     ]),
               ),
@@ -437,17 +437,28 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildTile(Widget child, {Function() onTap}) {
     return Material(
-        elevation: 14.0,
-        borderRadius: BorderRadius.circular(12.0),
-        color: Colors.black,
-        shadowColor: Color(0xFFFFFFF),
-        child: InkWell(
-            // Do onTap() if it isn't null, otherwise do print()
-            onTap: onTap != null
-                ? () => onTap()
-                : () {
-                    print('Not set yet');
-                  },
-            child: child));
+      elevation: 14.0,
+      borderRadius: BorderRadius.circular(12.0),
+      shadowColor: Color(0xFFFFFFF),
+      child: InkWell(
+        // Do onTap() if it isn't null, otherwise do print()
+        onTap: onTap != null
+            ? () => onTap()
+            : () {
+                print('Not set yet');
+              },
+        child: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment(-1.0, -2.0),
+                  end: Alignment(1.0, 2.0),
+                  colors: [Color(0xFFEB5757), Color(0xFF000000)]),
+              borderRadius: new BorderRadius.all(
+                const Radius.circular(10.0),
+              )),
+          child: child,
+        ),
+      ),
+    );
   }
 }
