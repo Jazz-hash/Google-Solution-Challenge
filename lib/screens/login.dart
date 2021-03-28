@@ -61,11 +61,11 @@ class LoginPage extends StatelessWidget {
       } else {
         emailController.text = "";
         passwordController.text = "";
-        showInSnackBar("Error !! Invalid username or password.", Colors.red);
+        showInSnackBar("Error !! Invalid username or password.", Colors.black);
       }
     } else {
       showInSnackBar(
-          "Error !! Please enter valid email & password.", Colors.red);
+          "Error !! Please enter valid email & password.", Colors.black);
     }
   }
 

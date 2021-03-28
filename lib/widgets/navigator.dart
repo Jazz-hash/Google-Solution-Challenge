@@ -34,7 +34,7 @@ class _DashboardPageState extends State<DashboardPage> {
       bottomNavigationBar: CurvedNavigationBar(
           color: Colors.black,
           backgroundColor: Colors.transparent,
-          buttonBackgroundColor: Colors.red,
+          buttonBackgroundColor: Color(0xFFEB5757),
           height: 50,
           animationCurve: Curves.bounceInOut,
           animationDuration: Duration(milliseconds: 200),
