@@ -6,6 +6,7 @@ import 'package:bizzhome/screens/settings.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:bizzhome/screens/FeedPage.dart';
 
 class DashboardPage extends StatefulWidget {
   @override
@@ -18,6 +19,7 @@ class _DashboardPageState extends State<DashboardPage> {
   final List<Widget> _children = [
     HomePage(),
     MyTasksPage(),
+    FeedPage(),
     OrdersPage(),
     SettingsPage(),
   ];
@@ -42,6 +44,7 @@ class _DashboardPageState extends State<DashboardPage> {
           items: [
             Icon(Icons.home, size: 20, color: Colors.white),
             Icon(Icons.favorite, size: 20, color: Colors.white),
+            Icon(Icons.now_widgets_rounded, size: 20, color: Colors.white),
             Icon(Icons.list, size: 20, color: Colors.white),
             Icon(Icons.settings, size: 20, color: Colors.white),
           ],
