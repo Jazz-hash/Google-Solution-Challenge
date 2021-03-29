@@ -4,7 +4,16 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SettingsPage extends StatelessWidget {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  // final user = Auth.returnUserDetails();
+  String name = "";
 
+  // _getdetails() async {
+  //   final user2 = await Auth.getUserDetails();
+  //   print("user2");
+  //   setState(() {
+  //     name = user2["username"];
+  //   });
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,9 +21,20 @@ class SettingsPage extends StatelessWidget {
         title: Text("Settings"),
         backgroundColor: Colors.black,
         brightness: Brightness.light,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.logout,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              // do something
+            },
+          )
+        ],
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -28,23 +48,16 @@ class SettingsPage extends StatelessWidget {
                   //open edit profile
                 },
                 title: Text(
-                  "John Doe",
+                  'ADD NAME PLEASE',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                // leading: CircleAvatar(
-                // // backgroundImage: NetworkImage(avatars[0]),
-                // ),
-                trailing: Icon(
-                  Icons.edit,
-                  color: Colors.white,
-                ),
               ),
             ),
             Card(
-              elevation: 4.0,
+              elevation: 8.0,
               margin: const EdgeInsets.fromLTRB(32.0, 8.0, 32.0, 16.0),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0)),
@@ -53,20 +66,13 @@ class SettingsPage extends StatelessWidget {
                   ListTile(
                     leading: Icon(
                       Icons.lock_outline,
-                      color: Colors.black,
+                      color: Colors.red,
                     ),
-                    title: Text("Change Password"),
-                    trailing: Icon(Icons.keyboard_arrow_right),
-                    onTap: () {
-                      //open change password
-                    },
                   ),
-                  // _buildDivider(),
-
                   ListTile(
                     leading: Icon(
                       FontAwesomeIcons.language,
-                      color: Colors.black,
+                      color: Colors.red,
                     ),
                     title: Text("Change Language"),
                     trailing: Icon(Icons.keyboard_arrow_right),
@@ -74,18 +80,15 @@ class SettingsPage extends StatelessWidget {
                       //open change language
                     },
                   ),
-                  // _buildDivider(),
-                  // ListTile(
-                  //   leading: Icon(
-                  //     Icons.location_on,
-                  //     color: Colors.purple,
-                  //   ),
-                  //   title: Text("Change Location"),
-                  //   trailing: Icon(Icons.keyboard_arrow_right),
-                  //   onTap: () {
-                  //     //open change location
-                  //   },
-                  // ),
+                  ListTile(
+                    leading: Icon(
+                      Icons.person,
+                      color: Colors.red,
+                    ),
+                    title: Text("Switch Account"),
+                    trailing: Icon(Icons.keyboard_arrow_right),
+                    onTap: () {},
+                  ),
                 ],
               ),
             ),
