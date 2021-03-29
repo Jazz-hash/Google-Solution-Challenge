@@ -1,3 +1,4 @@
+import 'package:bizzhome/screens/company_profile.dart';
 import 'package:bizzhome/screens/edit_profile.dart';
 import 'package:bizzhome/screens/reviews.dart';
 import 'package:bizzhome/screens/login.dart';
@@ -18,6 +19,7 @@ const TaskDetailRoute = "/task_detail";
 const ProfileRoute = "/profile";
 const ProfileEditRoute = "/edit_profile";
 const NotificationRoute = "/notifications";
+const CompanyRoute = "/company";
 
 class App extends StatelessWidget {
   @override
@@ -58,6 +60,9 @@ class App extends StatelessWidget {
           break;
         case NotificationRoute:
           screen = NotificationsPage();
+          break;
+        case CompanyRoute:
+          screen = CompanyPage();
           break;
         default:
           return null;

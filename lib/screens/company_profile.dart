@@ -1,33 +1,45 @@
 import 'package:bizzhome/app.dart';
 import 'package:bizzhome/models/Auth.dart';
 import 'package:bizzhome/models/Review.dart';
+import 'package:bizzhome/models/Task.dart';
+import 'package:bizzhome/widgets/FeedTileOverlay.dart';
+import 'package:bizzhome/widgets/imageBanner.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-class HomePage extends StatefulWidget {
+class CompanyPage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _CompanyPageState createState() => _CompanyPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _CompanyPageState extends State<CompanyPage> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final user = Auth.returnUserDetails();
+  final tasks = Task.fetchAll();
+
   String name = "";
+  String company = "";
 
   _getdetails() async {
     final user2 = await Auth.getUserDetails();
     print("user2");
     setState(() {
       name = user2["username"];
+      company = user2["company"];
     });
   }
 
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) => _getdetails());
+  }
+
+  _onTaskTap(BuildContext context, int taskID) {
+    Navigator.pushNamed(context, TaskDetailRoute,
+        arguments: {"id": taskID, "myTask": false});
   }
 
   final List<List<double>> charts = [
@@ -294,7 +306,7 @@ class _HomePageState extends State<HomePage> {
                                   size: 14,
                                 ),
                                 Padding(padding: EdgeInsets.only(left: 5)),
-                                Text("Edit profile",
+                                Text(company,
                                     style: TextStyle(
                                         fontSize: 14, color: Colors.white)),
                               ],
@@ -329,132 +341,6 @@ class _HomePageState extends State<HomePage> {
                 onTap: () => Navigator.of(context).pushNamed(ProfileRoute)),
             _buildTile(
               Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Row(
-                        children: [
-                          Material(
-                              color: Colors.white,
-                              shape: CircleBorder(),
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Icon(Icons.assessment_outlined,
-                                    color: Color(0xFFEB5757), size: 20.0),
-                              )),
-                          Padding(padding: EdgeInsets.only(right: 15)),
-                          Text('Orders',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 20.0)),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Column(
-                            children: [
-                              Padding(
-                                  padding:
-                                      EdgeInsets.only(top: 10, bottom: 8.0)),
-                              Icon(Icons.done, color: Colors.white),
-                              Padding(padding: EdgeInsets.only(top: 5)),
-                              Text('294',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 24.0)),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Padding(
-                                  padding:
-                                      EdgeInsets.only(top: 10, bottom: 8.0)),
-                              Icon(Icons.construction, color: Colors.white),
-                              Padding(padding: EdgeInsets.only(top: 5)),
-                              Text('8',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 24.0)),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ]),
-              ),
-            ),
-            _buildTile(
-              Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Row(
-                        children: [
-                          Material(
-                              color: Colors.white,
-                              shape: CircleBorder(),
-                              child: Padding(
-                                padding: EdgeInsets.all(10.0),
-                                child: Icon(Icons.star_rate_sharp,
-                                    color: Color(0xFFEB5757), size: 20.0),
-                              )),
-                          Padding(padding: EdgeInsets.only(right: 15)),
-                          Text('Reviews',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 20.0)),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Column(
-                            children: [
-                              Padding(
-                                  padding:
-                                      EdgeInsets.only(top: 10, bottom: 8.0)),
-                              Icon(Icons.more_time, color: Colors.white),
-                              Padding(padding: EdgeInsets.only(top: 5)),
-                              Text(reviewCount.toString(),
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 24.0)),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Padding(
-                                  padding:
-                                      EdgeInsets.only(top: 10, bottom: 8.0)),
-                              Icon(Icons.history, color: Colors.white),
-                              Padding(padding: EdgeInsets.only(top: 5)),
-                              Text('8',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 24.0)),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ]),
-              ),
-              // onTap: () =>
-              //     Navigator.of(context).pushNamed(NotificationRoute)
-            ),
-            _buildTile(
-              Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -487,48 +373,60 @@ class _HomePageState extends State<HomePage> {
                       )
                     ],
                   )),
-              onTap: () => Navigator.of(context).pushNamed(CompanyRoute),
             ),
             _buildTile(
               Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text('Reviews',
-                              style: TextStyle(color: Colors.white)),
-                          Text(reviewCount.toString(),
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 34.0)),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text('Revenue',
+                                  style: TextStyle(color: Colors.white)),
+                              Text('\$16K',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 34.0)),
+                            ],
+                          ),
                         ],
                       ),
-                      Material(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(24.0),
-                          child: Center(
+                      Padding(padding: EdgeInsets.only(bottom: 4.0)),
+                      Container(
+                        margin:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                        child: Column(
+                          children: [
+                            Expanded(
                               child: Padding(
-                            padding: EdgeInsets.all(16.0),
-                            child: Icon(Icons.store,
-                                color: Color(0xFFEB5757), size: 30.0),
-                          )))
-                    ]),
-              ),
-              onTap: () => Navigator.of(context).pushNamed(ItemsRoute),
-            )
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                child: ListView.builder(
+                                  itemCount: tasks.length,
+                                  itemBuilder: (context, index) =>
+                                      _itemBuilder(context, tasks[index]),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )),
+            ),
           ],
           staggeredTiles: [
             StaggeredTile.extent(2, 110.0),
-            StaggeredTile.extent(1, 180.0),
-            StaggeredTile.extent(1, 180.0),
             StaggeredTile.extent(2, 220.0),
-            StaggeredTile.extent(2, 110.0),
+            StaggeredTile.extent(2, 420.0),
           ],
         ),
       ),
@@ -557,6 +455,31 @@ class _HomePageState extends State<HomePage> {
                 const Radius.circular(10.0),
               )),
           child: child,
+        ),
+      ),
+    );
+  }
+
+  Widget _itemBuilder(BuildContext context, task) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      child: GestureDetector(
+        onTap: () => _onTaskTap(context, task.id),
+        key: Key('task_list_item_${task.id}'),
+        child: Container(
+          height: 245.0,
+          child: Stack(
+            children: [
+              ImageBanner(assetPath: task.imagePath),
+              FeedTileOverlay(
+                task.title,
+                task.assignedDate,
+                task.description,
+                task.duration,
+                task.points,
+              ),
+            ],
+          ),
         ),
       ),
     );
