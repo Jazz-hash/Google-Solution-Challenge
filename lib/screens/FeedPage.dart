@@ -6,7 +6,8 @@ import 'package:bizzhome/models/Task.dart';
 
 class FeedPage extends StatelessWidget {
   _onTaskTap(BuildContext context, int taskID) {
-    Navigator.pushNamed(context, TaskDetailRoute, arguments: {"id": taskID});
+    Navigator.pushNamed(context, TaskDetailRoute,
+        arguments: {"id": taskID, "myTask": false});
   }
 
   _onTaskTypeTap(BuildContext context, String type) {
@@ -18,16 +19,16 @@ class FeedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tasks = Task.fetchAllavailable();
+    final tasks = Task.fetchAll();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("My Tasks"),
+        title: Text("Tasks"),
         backgroundColor: Colors.black,
         brightness: Brightness.light,
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(vertical: 10),
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: Column(
           children: [
             Expanded(

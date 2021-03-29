@@ -25,7 +25,7 @@ class Task {
     this.imagePath,
   });
 
-  static List<Task> fetchAll() {
+  static List<Task> fetchMyTasks() {
     return [
       Task(
         id: 1,
@@ -62,14 +62,14 @@ class Task {
     ];
   }
 
-  static List<Task> fetchAllavailable() {
+  static List<Task> fetchAll() {
     return [
       Task(
         id: 1,
         title: "Task from Company A",
         description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-        status: "In-Progress",
+        status: "Available",
         client: Client(
           name: "Batman",
           profileUrl: "bizzhome:batman",
@@ -85,7 +85,7 @@ class Task {
         title: "Task from Company B",
         description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-        status: "Completed",
+        status: "Available",
         client: Client(
           name: "Batman",
           profileUrl: "bizzhome:batman",
@@ -97,6 +97,17 @@ class Task {
         imagePath: "assets/images/background.jpg",
       ),
     ];
+  }
+
+  static Task fetchMyTaskByID(int taskID) {
+    // NOTE: this will replaced by a proper API call
+    List<Task> tasks = Task.fetchMyTasks();
+    for (var i = 0; i < tasks.length; i++) {
+      if (tasks[i].id == taskID) {
+        return tasks[i];
+      }
+    }
+    return null;
   }
 
   static Task fetchByID(int taskID) {

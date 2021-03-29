@@ -48,7 +48,7 @@ class App extends StatelessWidget {
           screen = ReviewsPage();
           break;
         case TaskDetailRoute:
-          screen = TaskDetailPage(arguments["id"]);
+          screen = TaskDetailPage(arguments["id"], arguments["myTask"]);
           break;
         case ProfileRoute:
           screen = ProfilePage();

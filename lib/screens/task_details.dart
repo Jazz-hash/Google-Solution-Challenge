@@ -5,12 +5,19 @@ import 'package:flutter/material.dart';
 
 class TaskDetailPage extends StatelessWidget {
   final int _taskID;
+  final bool _myTask;
 
-  TaskDetailPage(this._taskID);
+  TaskDetailPage(this._taskID, this._myTask);
 
   @override
   Widget build(BuildContext context) {
-    final task = Task.fetchByID(_taskID);
+    Task task;
+    print(_myTask);
+    if (_myTask) {
+      task = Task.fetchMyTaskByID(_taskID);
+    } else {
+      task = Task.fetchByID(_taskID);
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -18,37 +25,105 @@ class TaskDetailPage extends StatelessWidget {
         backgroundColor: Colors.black,
         brightness: Brightness.light,
       ),
-      backgroundColor: Colors.black87,
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // ImageBanner(assetPath: task.imagePath),
-            Container(
-              decoration: BoxDecoration(color: Colors.grey),
-              child: Image.asset(
-                task.imagePath,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 4.0),
-              child: TaskTile(task.title, task.assignedDate, task.status,
-                  task.description, true),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
-              child: Text(
-                task.description,
-                style: TextStyle(
-                  color: Colors.white,
+        child: Column(children: [
+          Padding(
+            padding: EdgeInsets.only(right: 20, left: 20, top: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // ImageBanner(assetPath: task.imagePath),
+                Container(
+                  decoration: BoxDecoration(color: Colors.grey),
+                  child: Image.asset(
+                    task.imagePath,
+                    fit: BoxFit.cover,
+                    height: 200,
+                  ),
                 ),
-              ),
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 20.0, horizontal: 4.0),
+                  child: TaskTile(task.title, task.assignedDate, task.status,
+                      task.description, false, _myTask),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15.0),
+                  child: Row(
+                    children: [
+                      Icon(Icons.timelapse),
+                      Padding(
+                          padding: EdgeInsets.only(
+                        right: 5,
+                      )),
+                      Text(
+                        task.duration,
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                      Padding(
+                          padding: EdgeInsets.only(
+                        right: 10,
+                      )),
+                      Text(" - "),
+                      Padding(
+                          padding: EdgeInsets.only(
+                        right: 10,
+                      )),
+                      Icon(Icons.score),
+                      Padding(
+                          padding: EdgeInsets.only(
+                        right: 5,
+                      )),
+                      _myTask
+                          ? Text(
+                              "+ " + task.pointsEarned,
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
+                            )
+                          : Text(
+                              "+ " + task.points,
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
+                            ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+                  child: Text(
+                    task.description,
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        "From " + task.client.name,
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+              // ..addAll(textSections(location))),
             ),
-          ],
-          // ..addAll(textSections(location))),
-        ),
+          ),
+        ]),
       ),
     );
   }

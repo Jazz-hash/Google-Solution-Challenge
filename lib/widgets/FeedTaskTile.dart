@@ -2,7 +2,7 @@ import 'package:bizzhome/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:bizzhome/models/Client.dart';
 
-const TaskTileHeight = 200.0;
+const TaskTileHeight = 100.0;
 
 class FeedTaskTile extends StatelessWidget {
   final String title;
@@ -23,7 +23,7 @@ class FeedTaskTile extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: DefaultPaddingHorizontal),
       height: TaskTileHeight,
       child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
@@ -33,45 +33,66 @@ class FeedTaskTile extends StatelessWidget {
               style:
                   Theme.of(context).textTheme.title.copyWith(color: textColor),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Client Name: XXXXX ",
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle
-                      .copyWith(color: textColor),
-                ),
-                Text(
-                  "Starting Date: " + date.toUpperCase(),
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle
-                      .copyWith(color: textColor),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Duration: " + duration.toUpperCase(),
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle
-                      .copyWith(color: textColor),
-                ),
-                Text(
-                  "Points: " + points.toUpperCase(),
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle
-                      .copyWith(color: textColor),
-                ),
-              ],
+            Padding(padding: EdgeInsets.only(top: 10)),
+            Padding(
+              padding: EdgeInsets.only(left: 20),
+              child: Column(
+                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+
+                children: [
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(),
+                        child: Text(
+                          "Client Name: XXXXX ",
+                          style: Theme.of(context)
+                              .textTheme
+                              .subtitle
+                              .copyWith(color: textColor),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 20),
+                        child: Text(
+                          "Starting Date: " + date.toUpperCase(),
+                          style: Theme.of(context)
+                              .textTheme
+                              .subtitle
+                              .copyWith(color: textColor),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 10),
+                        child: Text(
+                          "Duration: " + duration.toUpperCase(),
+                          style: Theme.of(context)
+                              .textTheme
+                              .subtitle
+                              .copyWith(color: textColor),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 20, top: 10),
+                        child: Text(
+                          "Points: " + points.toUpperCase(),
+                          style: Theme.of(context)
+                              .textTheme
+                              .subtitle
+                              .copyWith(color: textColor),
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
             ),
           ]),
     );

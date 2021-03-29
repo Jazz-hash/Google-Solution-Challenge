@@ -6,7 +6,8 @@ import 'package:bizzhome/models/Task.dart';
 
 class MyTasksPage extends StatelessWidget {
   _onTaskTap(BuildContext context, int taskID) {
-    Navigator.pushNamed(context, TaskDetailRoute, arguments: {"id": taskID});
+    Navigator.pushNamed(context, TaskDetailRoute,
+        arguments: {"id": taskID, "myTask": true});
   }
 
   _onTaskTypeTap(BuildContext context, String type) {
@@ -18,7 +19,7 @@ class MyTasksPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tasks = Task.fetchAll();
+    final tasks = Task.fetchMyTasks();
 
     return Scaffold(
       appBar: AppBar(
@@ -27,7 +28,7 @@ class MyTasksPage extends StatelessWidget {
         brightness: Brightness.light,
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(vertical: 10),
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: Column(
           children: [
             Container(
@@ -102,12 +103,8 @@ class MyTasksPage extends StatelessWidget {
           child: Stack(
             children: [
               ImageBanner(assetPath: task.imagePath),
-              TileOverlay(
-                task.title,
-                task.assignedDate,
-                task.status,
-                task.description,
-              ),
+              TileOverlay(task.title, task.assignedDate, task.status,
+                  task.description, true),
             ],
           ),
         ),

@@ -9,12 +9,15 @@ class TaskTile extends StatelessWidget {
   final String status;
   final String description;
   final bool darkTheme;
+  final bool _myTask;
 
-  TaskTile(
-      this.title, this.date, this.status, this.description, this.darkTheme);
+  TaskTile(this.title, this.date, this.status, this.description, this.darkTheme,
+      this._myTask);
 
   bool checkTaskStatus(String status) {
     if (status == "Completed") {
+      return true;
+    } else if (status == "Available") {
       return true;
     } else {
       return false;
@@ -46,12 +49,12 @@ class TaskTile extends StatelessWidget {
                   .subtitle
                   .copyWith(color: textColor),
             ),
-            checkTaskStatus(status)
+            checkTaskStatus(status) && _myTask
                 ? Row(
                     children: [
                       Icon(
                         Icons.check,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
@@ -65,24 +68,43 @@ class TaskTile extends StatelessWidget {
                       ),
                     ],
                   )
-                : Row(
-                    children: [
-                      Icon(
-                        Icons.construction,
-                        color: Colors.white,
+                : checkTaskStatus(status) && !_myTask
+                    ? Row(
+                        children: [
+                          Icon(
+                            Icons.approval,
+                            color: Colors.black,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                            child: Text(
+                              status.toUpperCase(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .caption
+                                  .copyWith(color: textColor),
+                            ),
+                          ),
+                        ],
+                      )
+                    : Row(
+                        children: [
+                          Icon(
+                            Icons.construction,
+                            color: Colors.black,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                            child: Text(
+                              status.toUpperCase(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .caption
+                                  .copyWith(color: textColor),
+                            ),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                        child: Text(
-                          status.toUpperCase(),
-                          style: Theme.of(context)
-                              .textTheme
-                              .caption
-                              .copyWith(color: textColor),
-                        ),
-                      ),
-                    ],
-                  ),
           ]),
     );
   }
