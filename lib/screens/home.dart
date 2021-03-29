@@ -254,6 +254,18 @@ class _HomePageState extends State<HomePage> {
         title: Text('BizzHome'),
         backgroundColor: Colors.black,
         brightness: Brightness.light,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.notifications,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.of(context).pushNamed(NotificationRoute);
+              // do something
+            },
+          )
+        ],
       ),
       body: Container(
         margin: EdgeInsets.symmetric(vertical: 10),
@@ -438,8 +450,9 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ]),
                 ),
-                onTap: () =>
-                    Navigator.of(context).pushNamed(NotificationRoute)),
+                 // onTap: () =>
+                //     Navigator.of(context).pushNamed(NotificationRoute)
+            ),
             _buildTile(
               Padding(
                   padding: const EdgeInsets.all(20.0),
