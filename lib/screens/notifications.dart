@@ -14,7 +14,7 @@ class NotificationsPage extends StatelessWidget {
           Card(
             child: ListTile(
               // leading: FlutterLogo(size: 56.0),
-              title: Text('Welcome to Bizz Home! Wonderful!', style: TextStyle(color: Colors.red, fontSize: 25.0),),
+              title: Text('Welcome to BizzHome! Wonderful!', style: TextStyle(color: Colors.red, fontSize: 25.0),),
               subtitle: Text('We hope to contribute to your business and help each other in testing times!'),
               trailing: Icon(Icons.more_vert),
             ),
