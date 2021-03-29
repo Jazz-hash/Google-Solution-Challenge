@@ -1,41 +1,64 @@
+import 'package:bizzhome/screens/edit_profile.dart';
+import 'package:bizzhome/screens/reviews.dart';
 import 'package:bizzhome/screens/login.dart';
+import 'package:bizzhome/screens/notifications.dart';
+import 'package:bizzhome/screens/profile.dart';
 import 'package:bizzhome/screens/register.dart';
+import 'package:bizzhome/screens/task_details.dart';
 import 'package:bizzhome/styles.dart';
 import 'package:bizzhome/widgets/navigator.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 const LoginRoute = "/";
 const DashboardRoute = "/dashboard";
 const RegisterRoute = "/register";
-
-void main() => runApp(App());
+const ItemsRoute = "/items";
+const TaskDetailRoute = "/task_detail";
+const ProfileRoute = "/profile";
+const ProfileEditRoute = "/edit_profile";
+const NotificationRoute = "/notifications";
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       onGenerateRoute: _routes(),
       theme: _theme(),
+      darkTheme: ThemeData.dark().copyWith(primaryColor: Colors.black),
+      themeMode: ThemeMode.light,
     );
   }
 
   RouteFactory _routes() {
     return (settings) {
-      // final Map<String, dynamic> arguments = settings.arguments;
+      final Map<String, dynamic> arguments = settings.arguments;
       Widget screen;
       switch (settings.name) {
         case LoginRoute:
-          screen = Login();
+          screen = LoginPage();
           break;
         case DashboardRoute:
-          screen = Dashboard();
+          screen = DashboardPage();
           break;
         case RegisterRoute:
-          screen = Register();
+          screen = RegisterPage();
           break;
-        // case RegisterRoute:
-        //   screen = Register(arguments["id"]);
-        //   break;
+        case ItemsRoute:
+          screen = ReviewsPage();
+          break;
+        case TaskDetailRoute:
+          screen = TaskDetailPage(arguments["id"]);
+          break;
+        case ProfileRoute:
+          screen = ProfilePage();
+          break;
+        case ProfileEditRoute:
+          screen = EditProfilePage();
+          break;
+        case NotificationRoute:
+          screen = NotificationsPage();
+          break;
         default:
           return null;
       }
@@ -45,6 +68,10 @@ class App extends StatelessWidget {
 
   ThemeData _theme() {
     return ThemeData(
+        backgroundColor: Colors.black87,
+        pageTransitionsTheme: PageTransitionsTheme(builders: {
+          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+        }),
         appBarTheme: AppBarTheme(
           color: Colors.white,
           textTheme: TextTheme(

@@ -28,8 +28,8 @@ class _ButtonNewUserState extends State<ButtonNewUser> {
         ], color: Colors.white, borderRadius: BorderRadius.circular(30)),
         child: FlatButton(
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Dashboard()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => DashboardPage()));
           },
           child: Align(
               alignment: Alignment.center,

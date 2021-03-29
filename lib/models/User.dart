@@ -1,8 +1,5 @@
 class User {
-  final int id;
-  final String username;
-  final String fullname;
-  final String password;
+  final String displayName;
   final String avatar;
   final String bio;
   final String skills_background;
@@ -11,10 +8,7 @@ class User {
   final String date_of_birth;
 
   User({
-    this.id,
-    this.username,
-    this.fullname,
-    this.password,
+    this.displayName,
     this.avatar,
     this.bio,
     this.skills_background,

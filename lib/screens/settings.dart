@@ -1,22 +1,20 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class NotificationsPage extends StatelessWidget {
+class SettingsPage extends StatelessWidget {
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Notifications"),
+        title: Text("Settings"),
         backgroundColor: Colors.black,
         brightness: Brightness.light,
       ),
       body: Container(
         constraints: BoxConstraints.expand(),
-        child: Text(
-          "Notifications",
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
+        child: Text(_firebaseAuth.currentUser.uid),
       ),
     );
   }
