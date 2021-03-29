@@ -62,6 +62,43 @@ class Task {
     ];
   }
 
+  static List<Task> fetchAllavailable() {
+    return [
+      Task(
+        id: 1,
+        title: "Task from Company A",
+        description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        status: "In-Progress",
+        client: Client(
+          name: "Batman",
+          profileUrl: "bizzhome:batman",
+        ),
+        assignedDate: "date",
+        duration: "1 month",
+        points: "100",
+        pointsEarned: "0",
+        imagePath: "assets/images/background.jpg",
+      ),
+      Task(
+        id: 2,
+        title: "Task from Company B",
+        description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        status: "Completed",
+        client: Client(
+          name: "Batman",
+          profileUrl: "bizzhome:batman",
+        ),
+        assignedDate: "date",
+        duration: "1 month",
+        points: "100",
+        pointsEarned: "100",
+        imagePath: "assets/images/background.jpg",
+      ),
+    ];
+  }
+
   static Task fetchByID(int taskID) {
     // NOTE: this will replaced by a proper API call
     List<Task> tasks = Task.fetchAll();
