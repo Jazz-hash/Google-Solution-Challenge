@@ -27,7 +27,7 @@ class _CompanyPageState extends State<CompanyPage> {
     print("user2");
     setState(() {
       name = user2["username"];
-      company = user2["company"];
+      company = "Oaks";
     });
   }
 
@@ -313,13 +313,13 @@ class _CompanyPageState extends State<CompanyPage> {
                                       size: 14,
                                     ),
                                     Padding(padding: EdgeInsets.only(left: 5)),
-                                    Text(company,
+                                    Text("@" + name,
                                         style: TextStyle(
                                             fontSize: 14, color: Colors.white)),
                                   ],
                                 ),
                                 Text(
-                                  "@" + name,
+                                  company,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w700,
@@ -367,7 +367,7 @@ class _CompanyPageState extends State<CompanyPage> {
                                   children: <Widget>[
                                     Text('Revenue',
                                         style: TextStyle(color: Colors.white)),
-                                    Text('\$16K',
+                                    Text('\$10K',
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.w700,
