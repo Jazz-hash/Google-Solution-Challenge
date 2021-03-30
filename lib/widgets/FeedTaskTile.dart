@@ -28,12 +28,15 @@ class FeedTaskTile extends StatelessWidget {
           // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(padding: EdgeInsets.only(top: 10)),
             Text(
               title.toUpperCase() + " - " + company.toUpperCase(),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
-              style:
-                  Theme.of(context).textTheme.title.copyWith(color: textColor),
+              style: Theme.of(context)
+                  .textTheme
+                  .title
+                  .copyWith(color: textColor, fontSize: 18),
             ),
             Padding(padding: EdgeInsets.only(top: 10)),
             Padding(

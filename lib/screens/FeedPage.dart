@@ -30,12 +30,50 @@ class FeedPage extends StatelessWidget {
       body: Container(
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            Row(
+              children: [
+                Padding(padding: EdgeInsets.only(top: 40)),
+                Icon(Icons.whatshot, color: Colors.red, size: 24),
+                SizedBox(
+                  width: 12,
+                ),
+                Text("Boosted",
+                    style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.red)),
+              ],
+            ),
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
                 child: ListView.builder(
-                  itemCount: tasks.length,
+                  itemCount: 2,
+                  itemBuilder: (context, index) =>
+                      _itemBuilder(context, tasks[index + 1]),
+                ),
+              ),
+            ),
+            Row(
+              children: [
+                Icon(Icons.place, color: Colors.red, size: 24),
+                SizedBox(
+                  width: 12,
+                ),
+                Text("Near You:",
+                    style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.red)),
+              ],
+            ),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: ListView.builder(
+                  itemCount: tasks.length - 1,
                   itemBuilder: (context, index) =>
                       _itemBuilder(context, tasks[index]),
                 ),
@@ -49,12 +87,12 @@ class FeedPage extends StatelessWidget {
 
   Widget _itemBuilder(BuildContext context, task) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: 5),
       child: GestureDetector(
         onTap: () => _onTaskTap(context, task.id),
         key: Key('task_list_item_${task.id}'),
         child: Container(
-          height: 245.0,
+          height: 100.0,
           child: Stack(
             children: [
               ImageBanner(assetPath: task.imagePath),

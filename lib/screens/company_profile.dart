@@ -31,7 +31,7 @@ class _CompanyPageState extends State<CompanyPage> {
     });
   }
 
-  final tasks = Task.fetchCompanyTasks("Samsung");
+  final tasks = Task.fetchCompanyTasks("Oaks");
 
   _onTaskTap(BuildContext context, int taskID) {
     Navigator.pushNamed(context, TaskDetailRoute,
@@ -470,7 +470,7 @@ class _CompanyPageState extends State<CompanyPage> {
         onTap: () => _onTaskTap(context, task.id),
         key: Key('task_list_item_${task.id}'),
         child: Container(
-          height: 245.0,
+          height: 100.0,
           child: Stack(
             children: [
               ImageBanner(assetPath: task.imagePath),

@@ -20,10 +20,10 @@ class OrderInfo {
     return [
       OrderInfo(
         id: 1,
-        task: "Task 2",
+        task: "Catering for Lunch",
         date: DateTime.now(),
         clientInfo: ClientInfo(
-          name: 'TestClient',
+          name: 'Hana Rana',
           thumbnailUrl: 'assets/images/user.jpg',
         ),
         description: "Description",

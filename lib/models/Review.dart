@@ -22,21 +22,22 @@ class Review {
     return [
       Review(
         id: 1,
-        task: "Task 1",
-        category: "Baking",
-        rating: 6.4,
+        task: "Delivery to Warehouse",
+        category: "Driving",
+        rating: 5,
         user: "Jazz",
         userImage: "assets/images/user.jpg",
-        comment: "waah janii waah !!",
+        comment:
+            "Really impressed with his professional behaviour and punctuality!",
       ),
       Review(
         id: 1,
-        task: "Task 2",
+        task: "Catering for Lunch",
         category: "Cooking",
-        rating: 2.3,
+        rating: 4.5,
         user: "Jazz",
         userImage: "assets/images/user.jpg",
-        comment: "beekar !!",
+        comment: "The food was cold upon delivery.",
       ),
     ];
   }

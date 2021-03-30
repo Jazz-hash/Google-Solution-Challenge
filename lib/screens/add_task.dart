@@ -1,4 +1,5 @@
 import 'package:bizzhome/models/Auth.dart';
+import 'package:bizzhome/models/Task.dart';
 import 'package:bizzhome/models/User.dart';
 import 'package:bizzhome/net/firebase.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,6 +15,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
   String name = "";
   String company = "";
   final user = Auth.returnUserDetails();
+  final task = Task.fetchCompanyTasks("Oaks")[0];
   final _formKey = GlobalKey<FormState>();
 
   TextEditingController titleController = new TextEditingController();
@@ -39,12 +41,12 @@ class _AddTaskPageState extends State<AddTaskPage> {
 
   @override
   Widget build(BuildContext context) {
-    titleController.text = user.displayName;
-    descriptionController.text = user.bio;
-    clientController.text = user.skills_background;
-    durationController.text = user.educational_background;
-    pointsController.text = user.date_of_birth;
-    imageController.text = user.date_of_birth;
+    titleController.text = task.title;
+    descriptionController.text = task.description;
+    clientController.text = task.client.name;
+    durationController.text = task.duration;
+    pointsController.text = task.points;
+    imageController.text = task.imagePath;
     return Scaffold(
       appBar: AppBar(
         title: Text("Add Task"),

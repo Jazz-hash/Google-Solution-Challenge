@@ -54,6 +54,32 @@ class TaskDetailPage extends StatelessWidget {
                       false,
                       _myTask),
                 ),
+                task.status == "Available"
+                    ? Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 15.0),
+                        child: Container(
+                          margin: EdgeInsets.only(bottom: 10),
+                          child: FlatButton(
+                            textColor: Colors.white,
+                            color: Color(0xFFEB5757),
+                            splashColor: Colors.white.withOpacity(0.5),
+                            onPressed: () => {},
+                            child: Padding(
+                              padding: EdgeInsets.all(10),
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.star),
+                                    Text(" Apply"),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : Text(""),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15.0),
                   child: Row(
