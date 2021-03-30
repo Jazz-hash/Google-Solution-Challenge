@@ -7,12 +7,15 @@ class Auth {
     final user = getUserID();
     print(user);
     return User(
-      displayName: "Muhammad Jazzel Mehmood",
+      displayName: "Mustafa Khan",
       company: "Samsung",
       avatar: "assets/images/user.jpg",
-      bio: "This is bio",
-      skills_background: "Bht saray hein ! ",
-      educational_background: "ksi kam ka nei !",
+      bio:
+          "Hello, I'm Mustafa, a passionate individual who loves playing cricket and someone who always takes their work seriously. Residing in Karachi, I am always looking for opportunities where I can put my skills to test and also make a living out of them.",
+      skills_background:
+          "Driving (Light transport vehicle) , Cooking (Pakistani Cuisine) , Painting",
+      educational_background:
+          "Completed Matriculation from Karachi Montessori & High School - 2013 ,  Completed Intermediate from Karachi Montessori & High School - 2015",
       date_of_birth: "2020-01-01",
       registered_date: "2020-01-01",
     );
@@ -26,11 +29,15 @@ class Auth {
   static User authorizeUser(String email, String password) {
     if (email == "admin" && password == "admin") {
       return User(
-        displayName: "Muhammad Jazzel Mehmood",
+        displayName: "Mustafa Khan",
+        company: "Samsung",
         avatar: "assets/images/user.jpg",
-        bio: "This is bio",
-        skills_background: "Bht saray hein ! ",
-        educational_background: "ksi kam ka nei !",
+        bio:
+            "Hello, I'm Mustafa, a passionate individual who loves playing cricket and someone who always takes their work seriously. Residing in Karachi, I am always looking for opportunities where I can put my skills to test and also make a living out of them.",
+        skills_background:
+            "Driving (Light transport vehicle) , Cooking (Pakistani Cuisine) , Painting",
+        educational_background:
+            "Completed Matriculation from Karachi Montessori & High School - 2013 ,  Completed Intermediate from Karachi Montessori & High School - 2015",
         date_of_birth: "2020-01-01",
         registered_date: "2020-01-01",
       );

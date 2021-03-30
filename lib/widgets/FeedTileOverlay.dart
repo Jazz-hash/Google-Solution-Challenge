@@ -30,7 +30,6 @@ class FeedTileOverlay extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 5.0),
           decoration: BoxDecoration(color: Colors.black.withOpacity(0.5)),
           child: FeedTaskTile(
-              
               title, company, date, description, duration, points, true),
         ),
       ],

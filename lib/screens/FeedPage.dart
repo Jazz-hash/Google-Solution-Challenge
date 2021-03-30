@@ -30,10 +30,24 @@ class FeedPage extends StatelessWidget {
       body: Container(
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            Row(
+              children: [
+                Icon(Icons.place, color: Colors.red, size: 24),
+                SizedBox(
+                  width: 12,
+                ),
+                Text("Near You:",
+                    style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.red)),
+              ],
+            ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 10),
+                padding: EdgeInsets.symmetric(vertical: 40),
                 child: ListView.builder(
                   itemCount: tasks.length,
                   itemBuilder: (context, index) =>
