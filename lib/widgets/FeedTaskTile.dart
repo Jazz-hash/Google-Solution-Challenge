@@ -6,14 +6,15 @@ const TaskTileHeight = 100.0;
 
 class FeedTaskTile extends StatelessWidget {
   final String title;
+  final String company;
   final String date;
   final String description;
   final String duration;
   final String points;
   final bool darkTheme;
 
-  FeedTaskTile(this.title, this.date, this.description, this.duration,
-      this.points, this.darkTheme);
+  FeedTaskTile(this.title, this.company, this.date, this.description,
+      this.duration, this.points, this.darkTheme);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class FeedTaskTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              title.toUpperCase(),
+              title.toUpperCase() + " - " + company.toUpperCase(),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               style:

@@ -304,7 +304,7 @@ class _HomePageState extends State<HomePage> {
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700,
-                                fontSize: 34.0,
+                                fontSize: 30.0,
                               ),
                             ),
                           ],
@@ -349,7 +349,7 @@ class _HomePageState extends State<HomePage> {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 20.0)),
+                                  fontSize: 18.0)),
                         ],
                       ),
                       Row(
@@ -367,7 +367,7 @@ class _HomePageState extends State<HomePage> {
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 24.0)),
+                                      fontSize: 20.0)),
                             ],
                           ),
                           Column(
@@ -381,7 +381,7 @@ class _HomePageState extends State<HomePage> {
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 24.0)),
+                                      fontSize: 20.0)),
                             ],
                           ),
                         ],
@@ -411,7 +411,7 @@ class _HomePageState extends State<HomePage> {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w700,
-                                  fontSize: 20.0)),
+                                  fontSize: 18.0)),
                         ],
                       ),
                       Row(
@@ -429,7 +429,7 @@ class _HomePageState extends State<HomePage> {
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 24.0)),
+                                      fontSize: 20.0)),
                             ],
                           ),
                           Column(
@@ -443,7 +443,7 @@ class _HomePageState extends State<HomePage> {
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 24.0)),
+                                      fontSize: 20.0)),
                             ],
                           ),
                         ],
@@ -525,8 +525,8 @@ class _HomePageState extends State<HomePage> {
           ],
           staggeredTiles: [
             StaggeredTile.extent(2, 110.0),
-            StaggeredTile.extent(1, 180.0),
-            StaggeredTile.extent(1, 180.0),
+            StaggeredTile.extent(1, 160.0),
+            StaggeredTile.extent(1, 160.0),
             StaggeredTile.extent(2, 220.0),
             StaggeredTile.extent(2, 110.0),
           ],

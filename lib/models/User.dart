@@ -2,6 +2,7 @@ class User {
   final String displayName;
   final String avatar;
   final String bio;
+  final String company;
   final String skills_background;
   final String educational_background;
   final String registered_date;
@@ -11,6 +12,7 @@ class User {
     this.displayName,
     this.avatar,
     this.bio,
+    this.company,
     this.skills_background,
     this.educational_background,
     this.registered_date,

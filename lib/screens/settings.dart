@@ -1,19 +1,32 @@
+import 'package:bizzhome/app.dart';
+import 'package:bizzhome/models/Auth.dart';
+import 'package:bizzhome/utils/authentication.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class SettingsPage extends StatelessWidget {
+class SettingsPage extends StatefulWidget {
+  @override
+  _SettingsPageState createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  // final user = Auth.returnUserDetails();
+  final user = Auth.returnUserDetails();
   String name = "";
 
-  // _getdetails() async {
-  //   final user2 = await Auth.getUserDetails();
-  //   print("user2");
-  //   setState(() {
-  //     name = user2["username"];
-  //   });
-  // }
+  _getdetails() async {
+    final user2 = await Auth.getUserDetails();
+    setState(() {
+      name = user2["username"];
+    });
+  }
+
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _getdetails());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,9 +59,10 @@ class SettingsPage extends StatelessWidget {
               child: ListTile(
                 onTap: () {
                   //open edit profile
+                  signOut();
                 },
                 title: Text(
-                  'ADD NAME PLEASE',
+                  name,
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
@@ -68,6 +82,10 @@ class SettingsPage extends StatelessWidget {
                       Icons.lock_outline,
                       color: Colors.red,
                     ),
+                    title: Text("Edit Profile"),
+                    onTap: () {
+                      Navigator.of(context).pushNamed(ProfileRoute);
+                    },
                   ),
                   ListTile(
                     leading: Icon(

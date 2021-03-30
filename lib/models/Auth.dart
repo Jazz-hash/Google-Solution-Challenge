@@ -7,7 +7,8 @@ class Auth {
     final user = getUserID();
     print(user);
     return User(
-      displayName: "Dasdasdad",
+      displayName: "Muhammad Jazzel Mehmood",
+      company: "Samsung",
       avatar: "assets/images/user.jpg",
       bio: "This is bio",
       skills_background: "Bht saray hein ! ",

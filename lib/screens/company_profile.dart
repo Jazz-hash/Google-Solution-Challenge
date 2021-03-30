@@ -18,7 +18,6 @@ class CompanyPage extends StatefulWidget {
 class _CompanyPageState extends State<CompanyPage> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final user = Auth.returnUserDetails();
-  final tasks = Task.fetchAll();
 
   String name = "";
   String company = "";
@@ -32,14 +31,23 @@ class _CompanyPageState extends State<CompanyPage> {
     });
   }
 
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _getdetails());
-  }
+  final tasks = Task.fetchCompanyTasks("Samsung");
 
   _onTaskTap(BuildContext context, int taskID) {
     Navigator.pushNamed(context, TaskDetailRoute,
-        arguments: {"id": taskID, "myTask": false});
+        arguments: {"id": taskID, "myTask": true});
+  }
+
+  _onTaskTypeTap(BuildContext context, String type) {
+    final tasks = Task.fetchInProgress(type);
+    for (var i = 0; i < tasks.length; i++) {
+      debugPrint(tasks[i].title);
+    }
+  }
+
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _getdetails());
   }
 
   final List<List<double>> charts = [
@@ -280,153 +288,126 @@ class _CompanyPageState extends State<CompanyPage> {
         ],
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(vertical: 10),
-        child: StaggeredGridView.count(
-          crossAxisCount: 2,
-          crossAxisSpacing: 12.0,
-          mainAxisSpacing: 12.0,
-          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          children: <Widget>[
-            _buildTile(
-                Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+        margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        child: Column(
+          children: [
+            Container(
+              child: Column(
+                children: [
+                  _buildTile(
+                    Padding(
+                      padding: const EdgeInsets.all(24.0),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.create_rounded,
+                                      color: Colors.white,
+                                      size: 14,
+                                    ),
+                                    Padding(padding: EdgeInsets.only(left: 5)),
+                                    Text(company,
+                                        style: TextStyle(
+                                            fontSize: 14, color: Colors.white)),
+                                  ],
+                                ),
+                                Text(
+                                  "@" + name,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 30.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Material(
+                                color: Colors.transparent,
+                                borderRadius: BorderRadius.circular(24.0),
+                                child: Center(
+                                    child: Padding(
+                                  padding: const EdgeInsets.all(0),
+                                  child: CircleAvatar(
+                                    child: ClipOval(
+                                      child: Image.asset(
+                                        user.avatar,
+                                      ),
+                                    ),
+                                    maxRadius: 35,
+                                  ),
+                                )))
+                          ]),
+                    ),
+                    onTap: () => Navigator.of(context).pushNamed(ProfileRoute),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+                  ),
+                  _buildTile(
+                    Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Row(
-                              children: [
-                                Icon(
-                                  Icons.create_rounded,
-                                  color: Colors.white,
-                                  size: 14,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text('Revenue',
+                                        style: TextStyle(color: Colors.white)),
+                                    Text('\$16K',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 34.0)),
+                                  ],
                                 ),
-                                Padding(padding: EdgeInsets.only(left: 5)),
-                                Text(company,
-                                    style: TextStyle(
-                                        fontSize: 14, color: Colors.white)),
                               ],
                             ),
-                            Text(
-                              "@" + name,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 34.0,
-                              ),
-                            ),
+                            Padding(padding: EdgeInsets.only(bottom: 4.0)),
+                            Sparkline(
+                              data: charts[actualChart],
+                              lineWidth: 5.0,
+                              lineColor: Colors.white,
+                            )
                           ],
-                        ),
-                        Material(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(24.0),
-                            child: Center(
-                                child: Padding(
-                              padding: const EdgeInsets.all(0),
-                              child: CircleAvatar(
-                                child: ClipOval(
-                                  child: Image.asset(
-                                    user.avatar,
-                                  ),
-                                ),
-                                maxRadius: 35,
-                              ),
-                            )))
-                      ]),
+                        )),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 10),
+                    child: Text(
+                      "Active Tasks",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.left,
+                    ),
+                  ),
+                ],
+              ),
+              width: MediaQuery.of(context).size.width,
+            ),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: ListView.builder(
+                  itemCount: tasks.length,
+                  itemBuilder: (context, index) =>
+                      _itemBuilder(context, tasks[index]),
                 ),
-                onTap: () => Navigator.of(context).pushNamed(ProfileRoute)),
-            _buildTile(
-              Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text('Revenue',
-                                  style: TextStyle(color: Colors.white)),
-                              Text('\$16K',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 34.0)),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Padding(padding: EdgeInsets.only(bottom: 4.0)),
-                      Sparkline(
-                        data: charts[actualChart],
-                        lineWidth: 5.0,
-                        lineColor: Colors.white,
-                      )
-                    ],
-                  )),
+              ),
             ),
-            _buildTile(
-              Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text('Revenue',
-                                  style: TextStyle(color: Colors.white)),
-                              Text('\$16K',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 34.0)),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Padding(padding: EdgeInsets.only(bottom: 4.0)),
-                      Container(
-                        margin:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                        child: Column(
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(vertical: 10),
-                                child: ListView.builder(
-                                  itemCount: tasks.length,
-                                  itemBuilder: (context, index) =>
-                                      _itemBuilder(context, tasks[index]),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  )),
-            ),
-          ],
-          staggeredTiles: [
-            StaggeredTile.extent(2, 110.0),
-            StaggeredTile.extent(2, 220.0),
-            StaggeredTile.extent(2, 420.0),
           ],
         ),
       ),
@@ -473,6 +454,7 @@ class _CompanyPageState extends State<CompanyPage> {
               ImageBanner(assetPath: task.imagePath),
               FeedTileOverlay(
                 task.title,
+                task.client.company,
                 task.assignedDate,
                 task.description,
                 task.duration,
