@@ -60,6 +60,7 @@ class FeedPage extends StatelessWidget {
               ImageBanner(assetPath: task.imagePath),
               FeedTileOverlay(
                 task.title,
+                task.client.name,
                 task.client.company,
                 task.assignedDate,
                 task.description,

@@ -45,8 +45,14 @@ class TaskDetailPage extends StatelessWidget {
                 Padding(
                   padding:
                       EdgeInsets.symmetric(vertical: 20.0, horizontal: 4.0),
-                  child: TaskTile(task.title, task.assignedDate, task.status,
-                      task.description, false, _myTask),
+                  child: TaskTile(
+                      task.title,
+                      task.client.company,
+                      task.assignedDate,
+                      task.status,
+                      task.description,
+                      false,
+                      _myTask),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15.0),

@@ -5,6 +5,7 @@ import 'package:bizzhome/widgets/FeedTaskTile.dart';
 
 class FeedTileOverlay extends StatelessWidget {
   final String title;
+  final String client;
   final String company;
   final String date;
   final String description;
@@ -13,6 +14,7 @@ class FeedTileOverlay extends StatelessWidget {
 
   FeedTileOverlay(
     this.title,
+    this.client,
     this.company,
     this.date,
     this.description,
@@ -29,9 +31,8 @@ class FeedTileOverlay extends StatelessWidget {
         Container(
           padding: EdgeInsets.symmetric(vertical: 5.0),
           decoration: BoxDecoration(color: Colors.black.withOpacity(0.5)),
-          child: FeedTaskTile(
-              
-              title, company, date, description, duration, points, true),
+          child: FeedTaskTile(title, client, company, date, description,
+              duration, points, true),
         ),
       ],
     );

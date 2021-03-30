@@ -39,7 +39,7 @@ class MyTasksPage extends StatelessWidget {
                     onTap: () => _onTaskTypeTap(context, "In-Progress"),
                     key: Key('in_progress'),
                     child: Chip(
-                      backgroundColor: Color(0xFFE5634D),
+                      backgroundColor: Color(0xFFEB5757),
                       avatar: CircleAvatar(
                         backgroundColor: Colors.transparent,
                         child: Icon(Icons.construction, color: Colors.white),
@@ -103,8 +103,8 @@ class MyTasksPage extends StatelessWidget {
           child: Stack(
             children: [
               ImageBanner(assetPath: task.imagePath),
-              TileOverlay(task.title, task.assignedDate, task.status,
-                  task.description, true),
+              TileOverlay(task.title, task.client.company, task.assignedDate,
+                  task.status, task.description, true),
             ],
           ),
         ),

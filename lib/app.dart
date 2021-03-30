@@ -6,6 +6,7 @@ import 'package:bizzhome/screens/notifications.dart';
 import 'package:bizzhome/screens/profile.dart';
 import 'package:bizzhome/screens/register.dart';
 import 'package:bizzhome/screens/task_details.dart';
+import 'package:bizzhome/screens/add_task.dart';
 import 'package:bizzhome/styles.dart';
 import 'package:bizzhome/widgets/navigator.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ const ProfileRoute = "/profile";
 const ProfileEditRoute = "/edit_profile";
 const NotificationRoute = "/notifications";
 const CompanyRoute = "/company";
+const AddTaskRoute = "/add_task";
 
 class App extends StatelessWidget {
   @override
@@ -63,6 +65,9 @@ class App extends StatelessWidget {
           break;
         case CompanyRoute:
           screen = CompanyPage();
+          break;
+        case AddTaskRoute:
+          screen = AddTaskPage();
           break;
         default:
           return null;

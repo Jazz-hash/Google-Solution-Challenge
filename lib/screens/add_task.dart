@@ -1,28 +1,53 @@
 import 'package:bizzhome/models/Auth.dart';
 import 'package:bizzhome/models/User.dart';
 import 'package:bizzhome/net/firebase.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class EditProfilePage extends StatelessWidget {
+class AddTaskPage extends StatefulWidget {
+  @override
+  _AddTaskPageState createState() => _AddTaskPageState();
+}
+
+class _AddTaskPageState extends State<AddTaskPage> {
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  String name = "";
+  String company = "";
   final user = Auth.returnUserDetails();
   final _formKey = GlobalKey<FormState>();
 
-  TextEditingController nameController = new TextEditingController();
-  TextEditingController bioController = new TextEditingController();
-  TextEditingController skillsController = new TextEditingController();
-  TextEditingController eduController = new TextEditingController();
-  TextEditingController dobController = new TextEditingController();
+  TextEditingController titleController = new TextEditingController();
+  TextEditingController descriptionController = new TextEditingController();
+  TextEditingController clientController = new TextEditingController();
+  TextEditingController durationController = new TextEditingController();
+  TextEditingController pointsController = new TextEditingController();
+  TextEditingController imageController = new TextEditingController();
+
+  _getdetails() async {
+    final user2 = await Auth.getUserDetails();
+    print("user2");
+    setState(() {
+      name = user2["username"];
+      company = user2["company"];
+    });
+  }
+
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _getdetails());
+  }
 
   @override
   Widget build(BuildContext context) {
-    nameController.text = user.displayName;
-    bioController.text = user.bio;
-    skillsController.text = user.skills_background;
-    eduController.text = user.educational_background;
-    dobController.text = user.date_of_birth;
+    titleController.text = user.displayName;
+    descriptionController.text = user.bio;
+    clientController.text = user.skills_background;
+    durationController.text = user.educational_background;
+    pointsController.text = user.date_of_birth;
+    imageController.text = user.date_of_birth;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Edit Profile"),
+        title: Text("Add Task"),
         backgroundColor: Colors.black,
         brightness: Brightness.light,
       ),
@@ -47,13 +72,22 @@ class EditProfilePage extends StatelessWidget {
                   Text(""),
                   Center(
                     child: Text(
-                      user.displayName,
+                      name,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 25,
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
+                    ),
+                  ),
+                  Text(
+                    company,
+                    style: TextStyle(
+                      height: 2,
+                      fontSize: 17,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                 ],
@@ -67,12 +101,29 @@ class EditProfilePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     TextFormField(
-                      controller: nameController,
+                      controller: titleController,
+                      decoration: const InputDecoration(
+                        icon: const Icon(Icons.subtitles, color: Colors.black),
+                        hintText: 'Title',
+                        labelText: 'Title',
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black),
+                        ),
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black),
+                        ),
+                      ),
+                    ),
+                    Padding(padding: EdgeInsets.only(top: 5)),
+                    TextFormField(
+                      controller: clientController,
                       decoration: const InputDecoration(
                         icon: const Icon(Icons.person, color: Colors.black),
-                        hintText:
-                            'Name ( It will be displayed to other users )',
-                        // labelText: 'Name',
+                        hintText: 'Client Name',
+                        labelText: 'Client Name',
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.black),
                         ),
@@ -86,54 +137,12 @@ class EditProfilePage extends StatelessWidget {
                     ),
                     Padding(padding: EdgeInsets.only(top: 5)),
                     TextFormField(
-                      controller: bioController,
-                      keyboardType: TextInputType.multiline,
-                      maxLines: 3,
+                      controller: durationController,
                       decoration: const InputDecoration(
-                        icon: const Icon(Icons.email, color: Colors.black),
-                        hintText: 'Bio ( little information about you ) ',
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
-                        ),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
-                        ),
-                      ),
-                    ),
-                    Padding(padding: EdgeInsets.only(top: 5)),
-                    TextField(
-                      controller: skillsController,
-                      keyboardType: TextInputType.multiline,
-                      maxLines: 3,
-                      decoration: const InputDecoration(
-                        icon: const Icon(Icons.work, color: Colors.black),
+                        icon: const Icon(Icons.timelapse, color: Colors.black),
+                        hintText: 'Duration ',
                         labelStyle: TextStyle(color: Colors.black),
-                        labelText:
-                            'Skills ( Brief information of what you can do ) ',
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
-                        ),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
-                        ),
-                      ),
-                    ),
-                    Padding(padding: EdgeInsets.only(top: 5)),
-                    TextField(
-                      controller: eduController,
-                      keyboardType: TextInputType.multiline,
-                      maxLines: 3,
-                      decoration: InputDecoration(
-                        icon: Icon(Icons.book, color: Colors.black),
-                        labelText:
-                            'Education ( Brief information of your educational background ) ',
-                        labelStyle: TextStyle(color: Colors.black),
+                        labelText: 'Duration',
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.black),
                         ),
@@ -147,13 +156,33 @@ class EditProfilePage extends StatelessWidget {
                     ),
                     Padding(padding: EdgeInsets.only(top: 5)),
                     TextFormField(
-                      controller: dobController,
+                      controller: pointsController,
                       decoration: const InputDecoration(
-                        icon: const Icon(Icons.calendar_today,
-                            color: Colors.black),
-                        hintText: 'Date of birth ',
+                        icon: const Icon(Icons.score, color: Colors.black),
+                        hintText: 'Points ',
                         labelStyle: TextStyle(color: Colors.black),
-                        labelText: 'Date of birth',
+                        labelText: 'Points',
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black),
+                        ),
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black),
+                        ),
+                      ),
+                    ),
+                    Padding(padding: EdgeInsets.only(top: 5)),
+                    TextField(
+                      controller: descriptionController,
+                      keyboardType: TextInputType.multiline,
+                      maxLines: 3,
+                      decoration: const InputDecoration(
+                        icon: const Icon(Icons.book, color: Colors.black),
+                        hintText: 'Description ',
+                        labelStyle: TextStyle(color: Colors.black),
+                        labelText: 'Description',
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.black),
                         ),
@@ -171,15 +200,7 @@ class EditProfilePage extends StatelessWidget {
                         textColor: Colors.white,
                         color: Color(0xFFEB5757),
                         splashColor: Colors.white.withOpacity(0.5),
-                        onPressed: () => Auth.updateUserProfile(User(
-                          avatar: "dsad",
-                          bio: bioController.text,
-                          date_of_birth: dobController.text,
-                          displayName: nameController.text,
-                          educational_background: eduController.text,
-                          registered_date: "Dsadas",
-                          skills_background: skillsController.text,
-                        )),
+                        onPressed: () => {},
                         child: Padding(
                           padding: EdgeInsets.all(10),
                           child: Center(
@@ -187,7 +208,7 @@ class EditProfilePage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(Icons.edit),
-                                Text(" Edit profile"),
+                                Text(" Add Task"),
                               ],
                             ),
                           ),

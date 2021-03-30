@@ -329,7 +329,7 @@ class _HomePageState extends State<HomePage> {
                 onTap: () => Navigator.of(context).pushNamed(ProfileRoute)),
             _buildTile(
               Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.all(15.0),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -344,7 +344,7 @@ class _HomePageState extends State<HomePage> {
                                 child: Icon(Icons.assessment_outlined,
                                     color: Color(0xFFEB5757), size: 20.0),
                               )),
-                          Padding(padding: EdgeInsets.only(right: 15)),
+                          Padding(padding: EdgeInsets.only(right: 5)),
                           Text('Orders',
                               style: TextStyle(
                                   color: Colors.white,
@@ -391,7 +391,7 @@ class _HomePageState extends State<HomePage> {
             ),
             _buildTile(
               Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.all(15.0),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -406,8 +406,8 @@ class _HomePageState extends State<HomePage> {
                                 child: Icon(Icons.star_rate_sharp,
                                     color: Color(0xFFEB5757), size: 20.0),
                               )),
-                          Padding(padding: EdgeInsets.only(right: 15)),
-                          Text('Reviews',
+                          Padding(padding: EdgeInsets.only(right: 5)),
+                          Text('History',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w700,
@@ -525,8 +525,8 @@ class _HomePageState extends State<HomePage> {
           ],
           staggeredTiles: [
             StaggeredTile.extent(2, 110.0),
-            StaggeredTile.extent(1, 160.0),
-            StaggeredTile.extent(1, 160.0),
+            StaggeredTile.extent(1, 150.0),
+            StaggeredTile.extent(1, 150.0),
             StaggeredTile.extent(2, 220.0),
             StaggeredTile.extent(2, 110.0),
           ],

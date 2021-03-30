@@ -25,7 +25,6 @@ class ProfilePage extends StatelessWidget {
           'My Profile',
           style: TextStyle(
             color: Colors.white,
-            fontWeight: FontWeight.w400,
           ),
         ),
       ),

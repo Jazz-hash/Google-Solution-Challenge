@@ -2,10 +2,11 @@ import 'package:bizzhome/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:bizzhome/models/Client.dart';
 
-const TaskTileHeight = 100.0;
+const TaskTileHeight = 90.0;
 
 class FeedTaskTile extends StatelessWidget {
   final String title;
+  final String client;
   final String company;
   final String date;
   final String description;
@@ -13,8 +14,8 @@ class FeedTaskTile extends StatelessWidget {
   final String points;
   final bool darkTheme;
 
-  FeedTaskTile(this.title, this.company, this.date, this.description,
-      this.duration, this.points, this.darkTheme);
+  FeedTaskTile(this.title, this.client, this.company, this.date,
+      this.description, this.duration, this.points, this.darkTheme);
 
   @override
   Widget build(BuildContext context) {
@@ -47,11 +48,11 @@ class FeedTaskTile extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(),
                         child: Text(
-                          "Client Name: XXXXX ",
+                          "Client Name: " + client,
                           style: Theme.of(context)
                               .textTheme
                               .subtitle
-                              .copyWith(color: textColor),
+                              .copyWith(color: textColor, fontSize: 12),
                         ),
                       ),
                       Padding(
@@ -61,7 +62,7 @@ class FeedTaskTile extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .subtitle
-                              .copyWith(color: textColor),
+                              .copyWith(color: textColor, fontSize: 12),
                         ),
                       ),
                     ],
@@ -77,7 +78,7 @@ class FeedTaskTile extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .subtitle
-                              .copyWith(color: textColor),
+                              .copyWith(color: textColor, fontSize: 12),
                         ),
                       ),
                       Padding(
@@ -87,7 +88,7 @@ class FeedTaskTile extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .subtitle
-                              .copyWith(color: textColor),
+                              .copyWith(color: textColor, fontSize: 12),
                         ),
                       )
                     ],

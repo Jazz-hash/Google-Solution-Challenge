@@ -386,14 +386,36 @@ class _CompanyPageState extends State<CompanyPage> {
                         )),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 10),
-                    child: Text(
-                      "Active Tasks",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
+                      padding: EdgeInsets.only(top: 10),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Active Tasks",
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.left,
+                            ),
+                            FlatButton(
+                              textColor: Colors.white,
+                              color: Color(0xFFEB5757),
+                              splashColor: Colors.white.withOpacity(0.5),
+                              onPressed: () =>
+                                  Navigator.of(context).pushNamed(AddTaskRoute),
+                              child: Padding(
+                                padding: EdgeInsets.all(10),
+                                child: Center(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.add),
+                                      Text(" Add Task"),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ])),
                 ],
               ),
               width: MediaQuery.of(context).size.width,
@@ -454,6 +476,7 @@ class _CompanyPageState extends State<CompanyPage> {
               ImageBanner(assetPath: task.imagePath),
               FeedTileOverlay(
                 task.title,
+                task.client.name,
                 task.client.company,
                 task.assignedDate,
                 task.description,

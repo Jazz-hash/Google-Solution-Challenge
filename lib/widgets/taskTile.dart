@@ -5,14 +5,15 @@ const TaskTileHeight = 100.0;
 
 class TaskTile extends StatelessWidget {
   final String title;
+  final String company;
   final String date;
   final String status;
   final String description;
   final bool darkTheme;
   final bool _myTask;
 
-  TaskTile(this.title, this.date, this.status, this.description, this.darkTheme,
-      this._myTask);
+  TaskTile(this.title, this.company, this.date, this.status, this.description,
+      this.darkTheme, this._myTask);
 
   bool checkTaskStatus(String status) {
     if (status == "Completed") {
@@ -36,7 +37,7 @@ class TaskTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              title.toUpperCase(),
+              title.toUpperCase() + " - " + company.toUpperCase(),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               style:
