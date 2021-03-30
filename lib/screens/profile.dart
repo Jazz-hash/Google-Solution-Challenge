@@ -29,7 +29,6 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
       ),
-      backgroundColor: Colors.black87,
       body: Container(
         margin: EdgeInsets.symmetric(vertical: 20),
         child: ListView(
@@ -55,7 +54,7 @@ class ProfilePage extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 25,
-                        color: Colors.white,
+                        color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -65,7 +64,7 @@ class ProfilePage extends StatelessWidget {
                     style: TextStyle(
                       height: 2,
                       fontSize: 17,
-                      color: Colors.white,
+                      color: Colors.black,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -146,7 +145,7 @@ class ProfilePage extends StatelessWidget {
               margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
               child: FlatButton(
                 textColor: Colors.white,
-                color: Color(0xFFE5634D),
+                color: Color(0xFFEB5757),
                 splashColor: Colors.white.withOpacity(0.5),
                 onPressed: () =>
                     Navigator.of(context).pushNamed(ProfileEditRoute),
@@ -172,7 +171,7 @@ class ProfilePage extends StatelessWidget {
 
   Widget _buildBasicInfoWidget() {
     return Container(
-        color: Color(0xFFE5634D),
+        color: Color(0xFFEB5757),
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -194,7 +193,7 @@ class ProfilePage extends StatelessWidget {
                 ],
               ),
               textColor: Colors.white,
-              color: Color(0xFFE5634D),
+              color: Color(0xFFEB5757),
               minWidth: 30,
               splashColor: Colors.white.withOpacity(0.5),
             ),
@@ -204,7 +203,7 @@ class ProfilePage extends StatelessWidget {
 
   Widget _buildEducationWidget() {
     return Container(
-        color: Color(0xFFE5634D),
+        color: Color(0xFFEB5757),
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -225,7 +224,7 @@ class ProfilePage extends StatelessWidget {
                 ],
               ),
               textColor: Colors.white,
-              color: Color(0xFFE5634D),
+              color: Color(0xFFEB5757),
               minWidth: 30,
               splashColor: Colors.white.withOpacity(0.5),
             ),
@@ -235,7 +234,7 @@ class ProfilePage extends StatelessWidget {
 
   Widget _buildSkillsWidget() {
     return Container(
-        color: Color(0xFFE5634D),
+        color: Color(0xFFEB5757),
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -255,7 +254,7 @@ class ProfilePage extends StatelessWidget {
                 ],
               ),
               textColor: Colors.white,
-              color: Color(0xFFE5634D),
+              color: Color(0xFFEB5757),
               minWidth: 30,
               splashColor: Colors.white.withOpacity(0.5),
             ),
@@ -266,7 +265,7 @@ class ProfilePage extends StatelessWidget {
   Widget _buildBasicInfoTopWidget() {
     return Container(
       height: 50,
-      color: Color(0xFFE5634D),
+      color: Color(0xFFEB5757),
       alignment: Alignment.center,
       child: Text(
         "Basic Information",
@@ -327,7 +326,7 @@ class ProfilePage extends StatelessWidget {
 
   Widget _buildEducationTopWidget() {
     return Container(
-      color: Color(0xFFE5634D),
+      color: Color(0xFFEB5757),
       alignment: Alignment.center,
       child: Text(
         "Education",
@@ -376,7 +375,7 @@ class ProfilePage extends StatelessWidget {
 
   Widget _buildSkillsTopWidget() {
     return Container(
-      color: Color(0xFFE5634D),
+      color: Color(0xFFEB5757),
       alignment: Alignment.center,
       child: Text(
         "Skills",

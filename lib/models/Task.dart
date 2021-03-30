@@ -35,6 +35,7 @@ class Task {
         status: "In-Progress",
         client: Client(
           name: "Batman",
+          company: "Samsung",
           profileUrl: "bizzhome:batman",
         ),
         assignedDate: "date",
@@ -51,6 +52,7 @@ class Task {
         status: "Completed",
         client: Client(
           name: "Batman",
+          company: "Samsung",
           profileUrl: "bizzhome:batman",
         ),
         assignedDate: "date",
@@ -66,12 +68,13 @@ class Task {
     return [
       Task(
         id: 1,
-        title: "Task from Company A",
+        title: "Task",
         description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
         status: "Available",
         client: Client(
           name: "Batman",
+          company: "Samsung",
           profileUrl: "bizzhome:batman",
         ),
         assignedDate: "date",
@@ -82,12 +85,13 @@ class Task {
       ),
       Task(
         id: 2,
-        title: "Task from Company B",
+        title: "Task",
         description:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
         status: "Available",
         client: Client(
           name: "Batman",
+          company: "Samsung",
           profileUrl: "bizzhome:batman",
         ),
         assignedDate: "date",
@@ -130,5 +134,16 @@ class Task {
       }
     }
     return inProgressTask;
+  }
+
+  static List<Task> fetchCompanyTasks(String company) {
+    List<Task> tasks = Task.fetchAll();
+    List<Task> companyTasks = [];
+    for (var i = 0; i < tasks.length; i++) {
+      if (tasks[i].client.company == company) {
+        companyTasks.add(tasks[i]);
+      }
+    }
+    return companyTasks;
   }
 }
